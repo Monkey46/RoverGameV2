@@ -23,13 +23,18 @@ namespace RoverGameV2
                 }
             }
         }
-        /*
-        public List<GameObject> DrillColsions(Rectangle drillarea, List<GameObject> GOToDrill)
+        public List<Specimen> DrillColsions(Circle drillArea, List<GameObject> GOToDrill)
         {
-            
-            return null;
+            List<Specimen> drilledItems = new List<Specimen>();
+            foreach (GameObject GO in GOToDrill)
+            {
+                if (SwinGame.CircleRectCollision(drillArea, GO.HitBox) && GO is Specimen)
+                {
+                    drilledItems.Add(GO as Specimen);
+                }
+            }
+            return drilledItems;
         }
-        */
         public void MovmentCollisions(GameObject GO1, GameObject GO2)
         {
             if (SwinGame.RectanglesIntersect(GO1.HitBox,GO2.HitBox))

@@ -7,7 +7,7 @@ using SwinGameSDK;
 
 namespace RoverGameV2
 {
-    class Level
+    public class Level
     {
         GameGrid _gamegrid;
         ColsionManager _colsionM;
@@ -29,6 +29,10 @@ namespace RoverGameV2
         {
             get { return _selectedGO; }
             set { _selectedGO = value; }
+        }
+        public ColsionManager Colsions
+        {
+            get { return _colsionM; }
         }
         public void InputHandler()
         {

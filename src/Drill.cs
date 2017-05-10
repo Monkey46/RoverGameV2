@@ -10,9 +10,11 @@ namespace RoverGameV2
     public class Drill : Device
     {
         int _worn;
-        public Drill(string name, float width, float height, GameGrid gamegrind) : base(name, width, height, gamegrind)
+        float _drillsize;
+        public Drill(string name, float width, float height, float drillsize, GameGrid gamegrind) : base(name, width, height, gamegrind)
         {
             _worn = 0;
+            _drillsize = drillsize;
         }
 
         public int Worn
@@ -31,6 +33,23 @@ namespace RoverGameV2
                     return false;
                 }
             }
+            Circle drillArea = new Circle();
+            drillArea.Center = (Owner as Rover).Center;
+            drillArea.Radius = _drillsize;
+            List<Specimen> drilledGOs =  GameGrid.Level.Colsions.DrillColsions(drillArea,GameGrid.Level.LevelGameObjects);
+            if (drilledGOs.Count == 0)
+            {
+                Console.WriteLine(Name + " drilled nothing");
+                return false;
+            }
+            foreach (GameObject singleDrilledGO in drilledGOs)
+            {
+                (Owner as Rover).Collect(singleDrilledGO as Specimen);
+                GameGrid.Level.LevelGameObjects.Remove(singleDrilledGO);
+            }
+
+           return true;
+            /* OLD code
             Cell drillingcell = GameGrid.FindGameObjectLocation(Owner as GameObject);
             GameObject drilledGO = drillingcell.Contents.Find(x => x is Specimen);
             if (drilledGO == null)
@@ -47,6 +66,8 @@ namespace RoverGameV2
                 _worn += 5;
                 return true;
             }
+            */
+
 
         }
         public override void Render()

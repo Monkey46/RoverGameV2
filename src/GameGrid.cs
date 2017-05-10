@@ -14,6 +14,7 @@ namespace RoverGameV2
         int _width, _height;
         Rover _selectedRover;
         float _cellSize;
+        private Level _level;
 
         public GameGrid(int width, int height, float cellSize)
         {
@@ -55,6 +56,11 @@ namespace RoverGameV2
         {
             get { return _selectedRover; }
             set { _selectedRover = value; }
+        }
+        public Level Level
+        {
+            get { return _level; }
+            set { _level = value; }
         }
 
         public int GetCellX(Cell getCell)

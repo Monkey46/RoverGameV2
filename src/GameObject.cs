@@ -64,6 +64,16 @@ namespace RoverGameV2
         {
             get { return Y + (Height / 2); }
         }
+        public Point2D Center
+        {
+            get
+            {
+                Point2D center = new Point2D();
+                center.X = CenterX;
+                center.Y = CenterY;
+                return center;
+            }
+        }
         public float XVelocity
         {
             get { return _xVelocity; }

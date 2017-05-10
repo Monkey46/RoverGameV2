@@ -134,6 +134,16 @@ namespace RoverGameV2
         }
         public bool Drill()
         {
+            if (_devices.Exists(x => x is Drill))
+            {
+                foreach (Drill drill in _devices.FindAll(s => s is Drill))
+                {
+                    if (drill.Operate())
+                    {
+                        return true;
+                    }
+                }
+            }
             return false;
         }
         public bool Scan()

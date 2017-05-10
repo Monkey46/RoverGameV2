@@ -14,6 +14,7 @@ namespace RoverGameV2
         {
             GameGrid grid = new GameGrid(20, 20, 30);
             _level = new Level(grid);
+            grid.Level = _level;
             //Open the game window
             SwinGame.OpenGraphicsWindow("GameMain", 800, 600);
             //SwinGame.ShowSwinGameSplashScreen();
@@ -21,7 +22,8 @@ namespace RoverGameV2
             Motor motor1 = new Motor("Motor", 10, 5, 2, grid);
             Motor motor3 = new Motor("Motor", 10, 5, 2, grid);
             Battery bat1 = new Battery("Battery", 10, 5, 500);
-            SolarPanel sp = new SolarPanel("SolarPanel", 10, 5, grid);
+            SolarPanel sp1 = new SolarPanel("SolarPanel", 10, 5, grid);
+            Drill drill1 = new Drill("Drill",10,5,10,grid);
             Rover rover2 = new Rover("MaddX5", 20, 10, grid);
             Motor motor2 = new Motor("Motor", 10, 5, 2, grid);
             Battery bat2 = new Battery("Battery", 10, 5, 200);
@@ -37,7 +39,8 @@ namespace RoverGameV2
             rover1.Attach(bat1);
             rover1.Attach(motor1);
             rover1.Attach(motor3);
-            rover1.Attach(sp);
+            rover1.Attach(sp1);
+            rover1.Attach(drill1);
             rover1.X = 50;
             rover1.Y = 60;
             rover2.X = 500;
@@ -52,7 +55,6 @@ namespace RoverGameV2
             SwinGame.ClearScreen(Color.White);
             // game Loop Goes here?
             _level.InputHandler();
-            
             _level.Handlecollisions();
             _level.Update();
             _level.Render();
