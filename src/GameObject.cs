@@ -115,8 +115,8 @@ namespace RoverGameV2
             if (coilliedWith is Rover)
             {
                 // needs Lots of Resreach and fixing
-                _xVelocity = -_preXVelocity;
-                _yVelocity = -_preYVelocity;
+                _xVelocity = -(2*_preXVelocity);
+                _yVelocity = -(2*_preYVelocity);
             }
         }
     }

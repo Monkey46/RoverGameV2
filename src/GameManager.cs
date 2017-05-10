@@ -52,8 +52,9 @@ namespace RoverGameV2
             SwinGame.ClearScreen(Color.White);
             // game Loop Goes here?
             _level.InputHandler();
-            _level.Update();
+            
             _level.Handlecollisions();
+            _level.Update();
             _level.Render();
             SwinGame.DrawFramerate(0, 0);
             SwinGame.RefreshScreen(60);
