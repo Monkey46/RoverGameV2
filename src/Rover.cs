@@ -9,6 +9,7 @@ namespace RoverGameV2
 {
     public class Rover : GameObject , IHasOwener
     {
+		// @Paul Private?
         List<Battery> _batteries;
         List<Device> _devices;
         List<Specimen> _specimens;

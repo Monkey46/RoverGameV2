@@ -19,6 +19,7 @@ namespace RoverGameV2
         {
             get { return _type; }
         }
+		// @Paul Split this up i can't understand it
         public override bool Operate()
         {
             if (!CheckBattery())

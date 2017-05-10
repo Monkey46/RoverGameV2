@@ -7,7 +7,7 @@ using SwinGameSDK;
 
 namespace RoverGameV2
 {
-
+	// @Paul What if this was a GameObject?
     public class GameGrid : IHasOwener
     {
         Cell[][] _cells;

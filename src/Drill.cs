@@ -31,6 +31,7 @@ namespace RoverGameV2
                     return false;
                 }
             }
+			// @Paul So it changes it to a GameObject from a cell When both times it's casted as a GameObject Why?
             Cell drillingcell = GameGrid.FindGameObjectLocation(Owner as GameObject);
             GameObject drilledGO = drillingcell.Contents.Find(x => x is Specimen);
             if (drilledGO == null)

@@ -7,6 +7,7 @@ using SwinGameSDK;
 
 namespace RoverGameV2
 {
+	// @Paul So how does this relate to the Other Collison methods
     public class ColsionManager
     {
         public ColsionManager()

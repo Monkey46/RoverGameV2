@@ -9,6 +9,7 @@ namespace RoverGameV2
 {
     public class Specimen : GameObject
     {
+		// @Paul Privates
         float _size;
         float _change;
         int _count;
@@ -26,7 +27,7 @@ namespace RoverGameV2
         {
             SwinGame.FillRectangle(Color.Green, X, Y, Width, Height);
         }
-
+		// @Paul Why 4? (use const)
         public override void Update()
         {
             if (_count == 4)
@@ -36,6 +37,7 @@ namespace RoverGameV2
             }
             else _count++;
         }
+		// @Paul Good shit
         private void Alternate(float max, float min)
         {
             if (Height >= max || Width >= max || Height <= min || Width <= min)
@@ -47,6 +49,7 @@ namespace RoverGameV2
             Y = Y - _change;
             Height = Height + 2 * _change;
         }
+		// @Paul Should chain Methods
         private void Alternate()
         {
             double max =  Width + Height ;

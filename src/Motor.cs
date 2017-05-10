@@ -9,6 +9,7 @@ namespace RoverGameV2
 {
     public class Motor : Device
     {
+		// @Paul Private
         Direction _direction;
         float _maxSpeed;
 
