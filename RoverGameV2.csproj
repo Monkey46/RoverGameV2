@@ -49,7 +49,7 @@
     <Compile Include="src\GameMain.cs" />
     <Compile Include="src\GameObject.cs" />
     <Compile Include="src\IAttachable.cs" />
-    <Compile Include="src\IHasOwener.cs" />
+    <Compile Include="src\IIsOwener.cs" />
     <Compile Include="src\Level.cs" />
     <Compile Include="src\GameGrid.cs" />
     <Compile Include="src\Motor.cs" />

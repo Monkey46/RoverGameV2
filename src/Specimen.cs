@@ -9,28 +9,46 @@ namespace RoverGameV2
 {
     public class Specimen : GameObject
     {
-		// @Paul Privates
-        float _size;
-        float _change;
-        int _count;
+        // @Paul Privates
+        private float _size;
+        private float _change;
+        private int _count;
+        private int _countMax;
         public Specimen(string name, float width, float height, float size) : base(name, width, height)
         {
             _size = size;
             _change = 1;
             _count = 0;
+            _countMax = 0;
         }
         public float Size
         {
             get { return _size; }
         }
+        public int AlternateSpeed
+        {
+            set
+            {
+                if (value <= 5)
+                {
+                    _change = 1;
+                    _countMax = 5-value;
+                }
+                if (value > 5)
+                {
+                    _change = value - 5;
+                    _countMax = 0;
+                }
+            }
+        }
         public override void Render()
         {
             SwinGame.FillRectangle(Color.Green, X, Y, Width, Height);
         }
-		// @Paul Why 4? (use const)
+
         public override void Update()
         {
-            if (_count == 4)
+            if (_count == _countMax)
             {
                 Alternate();
                 _count = 0;
@@ -49,20 +67,11 @@ namespace RoverGameV2
             Y = Y - _change;
             Height = Height + 2 * _change;
         }
-		// @Paul Should chain Methods
         private void Alternate()
         {
-            double max =  Width + Height ;
-            double min = 2;
-
-            X = X + _change;
-            Width = Width - 2 * _change;
-            Y = Y - _change;
-            Height = Height + 2 * _change;
-            if (Height >= max || Width >= max || Height <= min || Width <= min)
-            {
-                _change = -1 * _change;
-            }
+            float max =  Width + Height ;
+            float min = 2;
+            Alternate( max, min);
         }
     }
 }

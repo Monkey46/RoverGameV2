@@ -9,9 +9,8 @@ namespace RoverGameV2
 {
     public class Motor : Device
     {
-		// @Paul Private
-        Direction _direction;
-        float _maxSpeed;
+        private Direction _direction;
+        private float _maxSpeed;
 
         public Motor(string name, float width, float height,float maxspeed,GameGrid gamegrind) : base(name, width,height, gamegrind)
         {

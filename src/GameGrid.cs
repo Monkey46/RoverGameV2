@@ -7,8 +7,7 @@ using SwinGameSDK;
 
 namespace RoverGameV2
 {
-	// @Paul What if this was a GameObject?
-    public class GameGrid : IHasOwener
+    public class GameGrid : IIsOwener
     {
         Cell[][] _cells;
         int _width, _height;

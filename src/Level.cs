@@ -9,18 +9,16 @@ namespace RoverGameV2
 {
     public class Level
     {
-		// @Paul Camel Casing
-		// @Paul Misisng private Keyword for 3 out of 4
-        GameGrid _gamegrid;
-        ColsionManager _colsionM;
+        private GameGrid _gamegrid;
+        private ColsionManager _colsionManager;
 		// @Paul LevelList Is this all of the GameObjects In the Level?
         private List<GameObject> _levelList;
-        GameObject _selectedGO;
+        private GameObject _selectedGO;
 
         public Level(GameGrid gamegrid)
         {
             _gamegrid = gamegrid;
-            _colsionM = new ColsionManager();
+            _colsionManager = new ColsionManager();
             _levelList = new List<GameObject>();
         }
         public List<GameObject> LevelGameObjects
@@ -35,7 +33,7 @@ namespace RoverGameV2
         }
         public ColsionManager Colsions
         {
-            get { return _colsionM; }
+            get { return _colsionManager; }
         }
         public void InputHandler()
         {
@@ -67,15 +65,16 @@ namespace RoverGameV2
 				/*
 					@Paul Im Guessing sGO is Selected Game Object but kinda unclear 
 					Because then you itrate though each one and there is a _selectedGO?
+                    DONE
 				*/ 
-                foreach (GameObject sGO in _levelList)
+                foreach (GameObject GO in _levelList)
                 {
-                    if (sGO.IsAt(SwinGame.MousePosition()))
+                    if (GO.IsAt(SwinGame.MousePosition()))
                     {
-                        _selectedGO = sGO;
-                        if (sGO is Rover)
+                        _selectedGO = GO;
+                        if (GO is Rover)
                         {
-                            _gamegrid.SelectedRover = sGO as Rover;
+                            _gamegrid.SelectedRover = GO as Rover;
                         }
                     }
                 }
@@ -141,8 +140,8 @@ namespace RoverGameV2
         {
             // Build Later if need better Colsions handler 
         }
-		// @Paul Shouldn't this be Private
-        public void DetectColsions()
+		// @Paul Shouldn't this be Private DONE
+        private void DetectColsions()
         {
             foreach (GameObject GO1 in _levelList)
             {
@@ -150,7 +149,7 @@ namespace RoverGameV2
                 {
                     if (GO1 != GO2)
                     {
-                        _colsionM.MovmentCollisions(GO1, GO2);
+                        _colsionManager.MovmentCollisions(GO1, GO2);
                     }
                 }
             }

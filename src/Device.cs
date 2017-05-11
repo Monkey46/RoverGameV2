@@ -10,19 +10,19 @@ namespace RoverGameV2
     {
         private Battery _connectedbattery;
         private GameGrid _gamegrind;
-        private IHasOwener _owner;
+        private IIsOwener _owner;
 		// @Paul THe Chain Should end at the top Or bottom when i think about it idk ask matt
         public Device(string name, float width, float height, GameGrid gamegrid) : this (name, width, height, gamegrid, gamegrid)
         {
            // _gamegrind = gamegrind;
            // _owner = gamegrind;
         }
-        public Device(string name, float width, float height, GameGrid gamegrind, IHasOwener owner) : base(name,width,height)
+        public Device(string name, float width, float height, GameGrid gamegrind, IIsOwener owner) : base(name,width,height)
         {
             _gamegrind = gamegrind;
             _owner = owner;
         }
-        public IHasOwener Owner
+        public IIsOwener Owner
         {
             get { return _owner; }
             set { _owner = value; }

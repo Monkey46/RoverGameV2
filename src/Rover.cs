@@ -7,13 +7,12 @@ using SwinGameSDK;
 
 namespace RoverGameV2
 {
-    public class Rover : GameObject , IHasOwener
+    public class Rover : GameObject , IIsOwener
     {
-		// @Paul Private?
-        List<Battery> _batteries;
-        List<Device> _devices;
-        List<Specimen> _specimens;
-        GameGrid _gamegrind;
+        private List<Battery> _batteries;
+        private List<Device> _devices;
+        private List<Specimen> _specimens;
+        private GameGrid _gamegrind;
         public Rover(string name, float width, float height, GameGrid gamegrind ) : base(name,width,height)
         {
             _batteries = new List<Battery>();

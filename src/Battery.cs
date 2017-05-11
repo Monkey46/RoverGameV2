@@ -9,8 +9,7 @@ namespace RoverGameV2
 {
     public class Battery : GameObject , IAttachable
     {
-		// @Paul Private?
-        int _powerlvl;
+        private int _powerlvl;
 		// @Paul Spacing?
         public Battery(string name, float width, float height,int initalPowerlvl) : base(name, width, height)
         {
