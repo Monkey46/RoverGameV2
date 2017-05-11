@@ -12,6 +12,7 @@ namespace RoverGameV2
         Level _level;
         public GameManager()
         {
+			// @Paul You already know to split this up
             GameGrid grid = new GameGrid(20, 20, 30);
             _level = new Level(grid);
             grid.Level = _level;

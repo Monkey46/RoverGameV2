@@ -8,6 +8,7 @@ namespace RoverGameV2
 {
     public abstract class GameObject
     {
+		// @Paul You were right Combine this stuff into Point2D
         private string _name;
         private float _x;
         private float _y;
@@ -106,6 +107,8 @@ namespace RoverGameV2
                 return hitbox;
             }
         }
+		// @Paul is there good reason for this to be public Do you ever Render only the outLine?
+		// I guess it might be for radar
         public void RederOutline()
         {
             SwinGame.DrawRectangle(Color.Black,X-1,Y-1,Width+2,Height+2);

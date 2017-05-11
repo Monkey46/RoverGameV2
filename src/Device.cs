@@ -11,7 +11,7 @@ namespace RoverGameV2
         private Battery _connectedbattery;
         private GameGrid _gamegrind;
         private IHasOwener _owner;
-
+		// @Paul THe Chain Should end at the top Or bottom when i think about it idk ask matt
         public Device(string name, float width, float height, GameGrid gamegrid) : this (name, width, height, gamegrid, gamegrid)
         {
            // _gamegrind = gamegrind;
@@ -40,6 +40,7 @@ namespace RoverGameV2
         {
             if (ConnectedBattery == null)
             {
+				// @Paul Printing to who?
                 Console.WriteLine(Name + " has no Batteries connected");
                 return false;
             }

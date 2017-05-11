@@ -9,8 +9,11 @@ namespace RoverGameV2
 {
     public class Level
     {
+		// @Paul Camel Casing
+		// @Paul Misisng private Keyword for 3 out of 4
         GameGrid _gamegrid;
         ColsionManager _colsionM;
+		// @Paul LevelList Is this all of the GameObjects In the Level?
         private List<GameObject> _levelList;
         GameObject _selectedGO;
 
@@ -61,6 +64,10 @@ namespace RoverGameV2
             //Select GameObject and Change Selected rover
             if (SwinGame.MouseClicked(MouseButton.LeftButton))
             {
+				/*
+					@Paul Im Guessing sGO is Selected Game Object but kinda unclear 
+					Because then you itrate though each one and there is a _selectedGO?
+				*/ 
                 foreach (GameObject sGO in _levelList)
                 {
                     if (sGO.IsAt(SwinGame.MousePosition()))
@@ -86,7 +93,10 @@ namespace RoverGameV2
             // Drop and Pick up (need gui)
             if (SwinGame.MouseClicked(MouseButton.RightButton))
             {
-                if (!(SelectedGameObject is Rover))
+				/* 
+					@Paul So there is _selectedGO and SelectedGameObject? You should also be using elseware in the code
+                */
+				if (!(SelectedGameObject is Rover))
                 {
                     // Check is rover is nearby 
                     // if so get rover to Attach or Collect it.
@@ -96,6 +106,7 @@ namespace RoverGameV2
         }
         public void Update()
         {
+			// @Paul Camel casing
             foreach (GameObject GO in _levelList)
             {
                 GO.Update();
@@ -125,10 +136,12 @@ namespace RoverGameV2
             _gamegrid.SelectedRover.Detach(moveGO as Device);
             _levelList.Add(moveGO);
         }
+		// @Paul How is this Seprate from HandleCollsions?
         public void UpdateColsionList()
         {
             // Build Later if need better Colsions handler 
         }
+		// @Paul Shouldn't this be Private
         public void DetectColsions()
         {
             foreach (GameObject GO1 in _levelList)

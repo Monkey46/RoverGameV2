@@ -9,7 +9,9 @@ namespace RoverGameV2
 {
     public class Battery : GameObject , IAttachable
     {
+		// @Paul Private?
         int _powerlvl;
+		// @Paul Spacing?
         public Battery(string name, float width, float height,int initalPowerlvl) : base(name, width, height)
         {
             _powerlvl = initalPowerlvl;
@@ -18,6 +20,7 @@ namespace RoverGameV2
         {
             get { return _powerlvl; }
         }
+		// @Paul So does this add power becuase ChangePower Makes me think it sets it I might just be crazy
         public bool ChangePower(int powerchange)
         {
             if (_powerlvl + powerchange < 0)
@@ -32,7 +35,7 @@ namespace RoverGameV2
         {
             SwinGame.FillRectangle(Color.Blue,X,Y,Width,Height);
         }
-
+		// @Paul What does this do?
         public override void Update()
         {
             
