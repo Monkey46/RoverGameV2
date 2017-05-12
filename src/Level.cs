@@ -14,12 +14,18 @@ namespace RoverGameV2
 		// @Paul LevelList Is this all of the GameObjects In the Level?
         private List<GameObject> _levelList;
         private GameObject _selectedGO;
+        private Dictionary<Point2D,int> _scanedGameObjects;
+        private int _gameTick;
+        private int _scanDuration;
 
         public Level(GameGrid gamegrid)
         {
             _gamegrid = gamegrid;
             _colsionManager = new ColsionManager();
             _levelList = new List<GameObject>();
+            _scanedGameObjects = new Dictionary<Point2D,int>();
+            _gameTick = 0;
+            _scanDuration = 300;
         }
         public List<GameObject> LevelGameObjects
         {
@@ -110,6 +116,7 @@ namespace RoverGameV2
             {
                 GO.Update();
             }
+            _gameTick++;
         }
         public void Handlecollisions()
         {   
@@ -123,6 +130,7 @@ namespace RoverGameV2
             {
                 GO.Render();
             }
+            RenderScan();
         }
         public void Pickup(GameObject moveGO)
         {
@@ -134,6 +142,30 @@ namespace RoverGameV2
         {
             _gamegrid.SelectedRover.Detach(moveGO as Device);
             _levelList.Add(moveGO);
+        }
+        public void AddScanObeject(Point2D addCordanite)
+        {
+            _scanedGameObjects.Add(addCordanite,_gameTick);
+        }
+        private void RenderScan()
+        {
+            List<Point2D> deletelist = new List<Point2D>();
+            foreach (KeyValuePair<Point2D,int> scanKVP in _scanedGameObjects)
+            {
+                if (_gameTick >= scanKVP.Value + _scanDuration)
+                {
+                    deletelist.Add(scanKVP.Key);
+                }
+                else
+                {
+                    SwinGame.FillCircle(Color.LightGreen, scanKVP.Key.X,scanKVP.Key.Y,4);
+                }
+            }
+            foreach (Point2D i in deletelist)
+            {
+                _scanedGameObjects.Remove(i);
+            }
+
         }
 		// @Paul How is this Seprate from HandleCollsions?
         public void UpdateColsionList()

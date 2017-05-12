@@ -9,13 +9,15 @@ namespace RoverGameV2
 {
     public class Radar : Device
     {
-        int _type;
-        public Radar(string name, float width, float height,GameGrid gamegrind, int type) : base(name, width, height, gamegrind)
+        private Type _type;
+        private int _range;
+        public Radar(string name, float width, float height, Type type,GameGrid gamegrind) : base(name, width, height, gamegrind)
         {
             _type = type;
+            _range = 5;
         }
 
-        public int Type
+        public Type Type
         {
             get { return _type; }
         }
@@ -32,6 +34,20 @@ namespace RoverGameV2
                 Console.WriteLine(ConnectedBattery.Name + " doesn't have enough charge to power " + Name);
                 return false;
             }
+            Console.WriteLine(Name +" is scanning");
+            Circle scanArea = new Circle();
+            scanArea.Center = (Owner as Rover).Center;
+            scanArea.Radius = GameGrid.CellSize * _range;
+            List<GameObject> scanedGOs = GameGrid.Level.Colsions.ScanColsions(scanArea, GameGrid.Level.LevelGameObjects);
+            foreach (GameObject scanGO in scanedGOs)
+            {
+                if (scanGO != Owner)
+                {
+                    GameGrid.Level.AddScanObeject(scanGO.Center);
+                }
+            }
+            return true;
+            /* OLD CODE
             // Rover location 
             Cell roverLoction = GameGrid.FindGameObjectLocation(Owner as GameObject);
             int roverX = GameGrid.GetCellX(roverLoction);
@@ -55,6 +71,7 @@ namespace RoverGameV2
 
             Total scaned = 97
             */
+            /*
             Cell[][] tempgrid = GameGrid.Cells;
             Dictionary<Specimen, Cell> scanedSpecimens = new Dictionary<Specimen, Cell>();
             int count = 2;
@@ -106,6 +123,7 @@ namespace RoverGameV2
             }
             Console.WriteLine(result);
             return true;
+            */
         }
         public override void Render()
         {

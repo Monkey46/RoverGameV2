@@ -119,10 +119,6 @@ namespace RoverGameV2
         {
             return SwinGame.PointInRect(_point, X, Y, Width, Height);
         }
-        public void HasBeenScaned()
-        {
-            SwinGame.DrawCircle(Color.LightGreen, CenterX, CenterY, 3);
-        }
         public void HasCollided(GameObject coilliedWith)
         {
             if (coilliedWith is Rover)

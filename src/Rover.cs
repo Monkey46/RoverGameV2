@@ -148,6 +148,16 @@ namespace RoverGameV2
         }
         public bool Scan()
         {
+            if (_devices.Exists(x => x is Radar))
+            {
+                foreach (Radar radar in _devices.FindAll(s => s is Radar))
+                {
+                    if (radar.Operate())
+                    {
+                        return true;
+                    }
+                }
+            }
             return false;
         }
 

@@ -14,15 +14,17 @@ namespace RoverGameV2
         {
 
         }
-        public void ScanColsions(Rectangle scanArea, List<GameObject> GOToScan)
+        public List<GameObject> ScanColsions(Circle scanArea, List<GameObject> GOToScan)
         {
+            List<GameObject> scannedGameObjects = new List<GameObject>();
             foreach (GameObject GO in GOToScan)
             {
-                if (SwinGame.RectanglesIntersect(scanArea, GO.HitBox ))
+                if (SwinGame.CircleRectCollision(scanArea, GO.HitBox ))
                 {
-                    GO.HasBeenScaned();
+                    scannedGameObjects.Add(GO);
                 }
             }
+            return scannedGameObjects;
         }
         public List<Specimen> DrillColsions(Circle drillArea, List<GameObject> GOToDrill)
         {

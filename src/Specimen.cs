@@ -9,7 +9,6 @@ namespace RoverGameV2
 {
     public class Specimen : GameObject
     {
-        // @Paul Privates
         private float _size;
         private float _change;
         private int _count;
