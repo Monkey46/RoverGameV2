@@ -106,9 +106,17 @@ namespace RoverGameV2
             }
             return null;
         }
+        public List<GameObject> GetScannedGameObjects(Circle scanArea)
+        {
+             return _level.Colsions.ScanColsions(scanArea, _level.LevelGameObjects);
+        }
+        public List<Specimen> GetDrilledSpecimen(Circle drillArea)
+        {
+            return Level.Colsions.DrillColsions(drillArea, Level.LevelGameObjects);
+        }
         public void Reder()
         {
-            SwinGame.FillRectangle(Color.Brown, 0, 0, Width * CellSize, Height * CellSize);
+            SwinGame.FillRectangle(Color.Black, 0, 0, Width * CellSize, Height * CellSize);
             // SwinGame.DrawBitmap(,);
 
             for (float xline = CellSize; xline <= Width * CellSize; xline = xline + CellSize)

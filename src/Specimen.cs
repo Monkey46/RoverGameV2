@@ -54,7 +54,6 @@ namespace RoverGameV2
             }
             else _count++;
         }
-		// @Paul Good shit
         private void Alternate(float max, float min)
         {
             if (Height >= max || Width >= max || Height <= min || Width <= min)

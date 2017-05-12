@@ -7,7 +7,7 @@ using SwinGameSDK;
 
 namespace RoverGameV2
 {
-	// @Paul So how does this relate to the Other Collison methods
+    // @Paul So how does this relate to the Other Collison methods
     public class ColsionManager
     {
         public ColsionManager()
@@ -19,7 +19,7 @@ namespace RoverGameV2
             List<GameObject> scannedGameObjects = new List<GameObject>();
             foreach (GameObject GO in GOToScan)
             {
-                if (SwinGame.CircleRectCollision(scanArea, GO.HitBox ))
+                if (SwinGame.CircleRectCollision(scanArea, GO.HitBox))
                 {
                     scannedGameObjects.Add(GO);
                 }
@@ -40,11 +40,23 @@ namespace RoverGameV2
         }
         public void MovmentCollisions(GameObject GO1, GameObject GO2)
         {
-            if (SwinGame.RectanglesIntersect(GO1.HitBox,GO2.HitBox))
+            if (SwinGame.RectanglesIntersect(GO1.HitBox, GO2.HitBox))
             {
                 GO1.HasCollided(GO2);
             }
         }
-
+        public void DetectColsions(List<GameObject> cellList)
+        {
+            foreach (GameObject GO1 in cellList)
+            {
+                foreach (GameObject GO2 in cellList)
+                {
+                    if (GO1 != GO2)
+                    {
+                        MovmentCollisions(GO1, GO2);
+                    }
+                }
+            }
+        }
     }
 }

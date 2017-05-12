@@ -40,8 +40,18 @@ namespace RoverGameV2
         {
             if (ConnectedBattery == null)
             {
-				// @Paul Printing to who?
-                Console.WriteLine(Name + " has no Batteries connected");
+                return false;
+            }
+            return true;
+        }
+        public bool CheckCanOperate(int batChange)
+        {
+            if (!CheckBattery())
+            {
+                return false;
+            }
+            if (!ConnectedBattery.ChangePower(batChange))
+            {
                 return false;
             }
             return true;

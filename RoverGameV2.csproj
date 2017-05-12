@@ -3,9 +3,9 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug-Windows</Configuration>
     <ProjectGuid>{A9DCAC72-BC77-4C33-BE70-BBFD31D7C798}</ProjectGuid>
-    <RootNamespace>MyGame</RootNamespace>
+    <RootNamespace>RoverGameV2</RootNamespace>
     <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
-    <AssemblyName>MyGame</AssemblyName>
+    <AssemblyName>RoverGameV2</AssemblyName>
     <SuppressXamMacUpsell>True</SuppressXamMacUpsell>
     <SuppressXamMacMigration>True</SuppressXamMacMigration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -39,6 +39,8 @@
     <Folder Include="images\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\Camera.cs" />
+    <Compile Include="src\ColorExtension.cs" />
     <Compile Include="src\GameManager.cs" />
     <Compile Include="src\Battery.cs" />
     <Compile Include="src\Cell.cs" />

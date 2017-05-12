@@ -24,14 +24,8 @@ namespace RoverGameV2
         }
         public override bool Operate()
         {
-            if (!CheckBattery())
+            if (!CheckCanOperate(-1))
             {
-                Console.WriteLine(Name + " has no Battery conected");
-                return false;
-            }
-            if (!ConnectedBattery.ChangePower(-1))
-            {
-                Console.WriteLine(ConnectedBattery.Name + " doesn't have enough charge to power " + Name);
                 return false;
             }
             //move rover

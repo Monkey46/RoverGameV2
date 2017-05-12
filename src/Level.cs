@@ -11,7 +11,6 @@ namespace RoverGameV2
     {
         private GameGrid _gamegrid;
         private ColsionManager _colsionManager;
-		// @Paul LevelList Is this all of the GameObjects In the Level?
         private List<GameObject> _levelList;
         private GameObject _selectedGO;
         private Dictionary<Point2D,int> _scanedGameObjects;
@@ -111,24 +110,23 @@ namespace RoverGameV2
         }
         public void Update()
         {
-			// @Paul Camel casing
-            foreach (GameObject GO in _levelList)
+            foreach (GameObject iGO in _levelList)
             {
-                GO.Update();
+                iGO.Update();
             }
             _gameTick++;
         }
         public void Handlecollisions()
         {   
-            DetectColsions();
+            _colsionManager.DetectColsions(_levelList);
         }
         public void Render()
         {
             _gamegrid.Reder();
             _selectedGO.RederOutline();
-            foreach (GameObject GO in _levelList)
+            foreach (GameObject iGO in _levelList)
             {
-                GO.Render();
+                iGO.Render();
             }
             RenderScan();
         }
@@ -158,6 +156,7 @@ namespace RoverGameV2
                 }
                 else
                 {
+                    
                     SwinGame.FillCircle(Color.LightGreen, scanKVP.Key.X,scanKVP.Key.Y,4);
                 }
             }
@@ -168,23 +167,11 @@ namespace RoverGameV2
 
         }
 		// @Paul How is this Seprate from HandleCollsions?
-        public void UpdateColsionList()
+        private void UpdateColsionList()
         {
-            // Build Later if need better Colsions handler 
-        }
-		// @Paul Shouldn't this be Private DONE
-        private void DetectColsions()
-        {
-            foreach (GameObject GO1 in _levelList)
-            {
-                foreach (GameObject GO2 in _levelList)
-                {
-                    if (GO1 != GO2)
-                    {
-                        _colsionManager.MovmentCollisions(GO1, GO2);
-                    }
-                }
-            }
+            
+            // @Task Build Later if need better Colsions handler 
+
         }
     }
 }

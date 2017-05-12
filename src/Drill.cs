@@ -29,14 +29,14 @@ namespace RoverGameV2
                 int chance = rand.Next(0, 100);
                 if (chance <= 20)
                 {
-                    Console.WriteLine(Name +" failed to drill");
+                    Console.WriteLine(Name + " failed to drill");
                     return false;
                 }
             }
             Circle drillArea = new Circle();
             drillArea.Center = (Owner as Rover).Center;
             drillArea.Radius = _drillsize;
-            List<Specimen> drilledGOs =  GameGrid.Level.Colsions.DrillColsions(drillArea,GameGrid.Level.LevelGameObjects);
+            List<Specimen> drilledGOs = GameGrid.GetDrilledSpecimen(drillArea);
             if (drilledGOs.Count == 0)
             {
                 Console.WriteLine(Name + " drilled nothing");
@@ -48,7 +48,7 @@ namespace RoverGameV2
                 GameGrid.Level.LevelGameObjects.Remove(singleDrilledGO);
             }
 
-           return true;
+            return true;
             /* OLD code
 			// @Paul So it changes it to a GameObject from a cell When both times it's casted as a GameObject Why?
             Cell drillingcell = GameGrid.FindGameObjectLocation(Owner as GameObject);
