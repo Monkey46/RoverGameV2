@@ -116,7 +116,7 @@ namespace RoverGameV2
         }
         public void Reder()
         {
-            SwinGame.FillRectangle(Color.Black, 0, 0, Width * CellSize, Height * CellSize);
+            SwinGame.FillRectangle(Color.SandyBrown, 0, 0, Width * CellSize, Height * CellSize);
             // SwinGame.DrawBitmap(,);
 
             for (float xline = CellSize; xline <= Width * CellSize; xline = xline + CellSize)

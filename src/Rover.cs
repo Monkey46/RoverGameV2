@@ -48,6 +48,14 @@ namespace RoverGameV2
             XVelocity = 0;
             YVelocity = 0;
         }
+        public void UpdateRenderList()
+        {
+            Camera camera = _devices.Find(x => x is Camera) as Camera;
+            if (camera != null)
+            {
+                camera.Operate();
+            }
+        }
         public void Attach(IAttachable attachItem)
         {
             if (attachItem is Battery)

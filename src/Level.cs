@@ -12,8 +12,9 @@ namespace RoverGameV2
         private GameGrid _gamegrid;
         private ColsionManager _colsionManager;
         private List<GameObject> _levelList;
+        private List<GameObject> _renderList;
         private GameObject _selectedGO;
-        private Dictionary<Point2D,int> _scanedGameObjects;
+        private List<Tuple<Point2D,int>> _scanedGameObjects;
         private int _gameTick;
         private int _scanDuration;
 
@@ -22,14 +23,20 @@ namespace RoverGameV2
             _gamegrid = gamegrid;
             _colsionManager = new ColsionManager();
             _levelList = new List<GameObject>();
-            _scanedGameObjects = new Dictionary<Point2D,int>();
+            _scanedGameObjects = new List<Tuple<Point2D, int>>();
             _gameTick = 0;
             _scanDuration = 300;
+            _renderList = new List<GameObject>();
         }
         public List<GameObject> LevelGameObjects
         {
             get { return _levelList; }
             set { _levelList = value; }
+        }
+        public List<GameObject> RenderList
+        {
+            get {return _renderList; }
+            set { _renderList = value; }
         }
         public GameObject SelectedGameObject
         {
@@ -67,19 +74,14 @@ namespace RoverGameV2
             //Select GameObject and Change Selected rover
             if (SwinGame.MouseClicked(MouseButton.LeftButton))
             {
-				/*
-					@Paul Im Guessing sGO is Selected Game Object but kinda unclear 
-					Because then you itrate though each one and there is a _selectedGO?
-                    DONE
-				*/ 
-                foreach (GameObject GO in _levelList)
+                foreach (GameObject iGO in _levelList)
                 {
-                    if (GO.IsAt(SwinGame.MousePosition()))
+                    if (iGO.IsAt(SwinGame.MousePosition()))
                     {
-                        _selectedGO = GO;
-                        if (GO is Rover)
+                        _selectedGO = iGO;
+                        if (iGO is Rover)
                         {
-                            _gamegrid.SelectedRover = GO as Rover;
+                            _gamegrid.SelectedRover = iGO as Rover;
                         }
                     }
                 }
@@ -114,6 +116,7 @@ namespace RoverGameV2
             {
                 iGO.Update();
             }
+            _gamegrid.SelectedRover.UpdateRenderList();
             _gameTick++;
         }
         public void Handlecollisions()
@@ -124,7 +127,11 @@ namespace RoverGameV2
         {
             _gamegrid.Reder();
             _selectedGO.RederOutline();
-            foreach (GameObject iGO in _levelList)
+            foreach (Rover rover in _levelList.FindAll(x => x is Rover))
+            {
+                rover.Render();
+            }
+            foreach (GameObject iGO in _renderList)
             {
                 iGO.Render();
             }
@@ -143,24 +150,23 @@ namespace RoverGameV2
         }
         public void AddScanObeject(Point2D addCordanite)
         {
-            _scanedGameObjects.Add(addCordanite,_gameTick);
+            _scanedGameObjects.Add(Tuple.Create<Point2D,int>(addCordanite,_gameTick));
         }
         private void RenderScan()
         {
-            List<Point2D> deletelist = new List<Point2D>();
-            foreach (KeyValuePair<Point2D,int> scanKVP in _scanedGameObjects)
+            List<Tuple<Point2D, int>> deletelist = new List<Tuple<Point2D, int>>();
+            foreach (Tuple<Point2D,int> scanTuple in _scanedGameObjects)
             {
-                if (_gameTick >= scanKVP.Value + _scanDuration)
+                if (_gameTick >= scanTuple.Item2 + _scanDuration)
                 {
-                    deletelist.Add(scanKVP.Key);
+                    deletelist.Add(scanTuple);
                 }
                 else
                 {
-                    
-                    SwinGame.FillCircle(Color.LightGreen, scanKVP.Key.X,scanKVP.Key.Y,4);
+                    SwinGame.FillCircle(Color.LightGreen, scanTuple.Item1.X, scanTuple.Item1.Y,4);
                 }
             }
-            foreach (Point2D i in deletelist)
+            foreach (Tuple<Point2D,int> i in deletelist)
             {
                 _scanedGameObjects.Remove(i);
             }

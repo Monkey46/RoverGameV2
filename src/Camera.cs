@@ -13,20 +13,21 @@ namespace RoverGameV2
 
         public Camera(string name, float width, float height, float range, GameGrid gamegrid) : base(name, width, height, gamegrid)
         {
-            _range = range;
+            _range = range * gamegrid.CellSize;
         }
         public override bool Operate()
         {
-            if (!CheckBattery())
+            if (!CheckCanOperate(0))
             {
-                Console.WriteLine(Name + " has no Battery conected");
                 return false;
             }
-            if (!ConnectedBattery.ChangePower(0))
-            {
-                Console.WriteLine(ConnectedBattery.Name + " doesn't have enough charge to power " + Name);
-                return false;
-            }
+
+            Circle ViewArea = new Circle();
+            ViewArea.Center = (Owner as Rover).Center;
+            ViewArea.Radius = _range;
+            SwinGame.DrawCircle(Color.Blue, ViewArea);
+             List<GameObject>viewedGameObjects = GameGrid.GetScannedGameObjects(ViewArea);
+            GameGrid.Level.RenderList = viewedGameObjects;
 
             return true;
 
