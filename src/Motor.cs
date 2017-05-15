@@ -57,7 +57,11 @@ namespace RoverGameV2
             }
             return true;
         }
-        public override void Render()
+		public override string Details()
+		{
+			return "Motor Speed: " + _maxSpeed.ToString();
+		}
+		public override void Render()
         {
             SwinGame.FillRectangle(Color.DeepPink, X, Y, Width, Height);
         }

@@ -107,7 +107,6 @@ namespace RoverGameV2
                 _devices.RemoveAll(x => x == attachItem);
                 (attachItem as Device).Owner = _gamegrind;
             }
-           // Console.WriteLine(Name+" has attached "+(attachItem as GameObject).Name);
         }
         public void Collect(Specimen newSpecimen)
         {

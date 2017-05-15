@@ -7,69 +7,70 @@ using SwinGameSDK;
 
 namespace RoverGameV2
 {
-     public class GameManager
-    {
-        Level _level;
+	public class GameManager
+	{
+		Level _level;
 		GUI _gui;
 
 		public GameManager()
-        {
+		{
 			//Open the game window
-			SwinGame.OpenGraphicsWindow("GameMain", 800, 600);
+			SwinGame.OpenGraphicsWindow("GameMain", 900, 600);
 			// @Paul You already know to split this up
 			GameGrid grid = new GameGrid(20, 20, 30);
-            _level = new Level(grid);
+			_level = new Level(grid);
 			_gui = new GUI(grid);
-            grid.Level = _level;
-            //SwinGame.ShowSwinGameSplashScreen();
-            Rover rover1 = new Rover("Rover 1", 20, 10, grid);
-            Motor motor1 = new Motor("Motor", 10, 5, 2, grid);
-            Motor motor3 = new Motor("Motor", 10, 5, 2, grid);
-            Battery bat1 = new Battery("Battery", 10, 5, 500);
-            SolarPanel sp1 = new SolarPanel("SolarPanel", 10, 5, grid);
-            Drill drill1 = new Drill("Drill",10,5,10,grid);
-            Radar radar1 = new Radar("Radar", 10, 8,typeof(Specimen), 5, grid);
-            Camera camera1 = new Camera("Camera", 10, 8, 2, grid);
-            Rover rover2 = new Rover("MaddX5", 20, 10, grid);
-            Motor motor2 = new Motor("Motor", 10, 5, 2, grid);
-            Battery bat2 = new Battery("Battery", 10, 5, 200);
-            SolarPanel sp2 = new SolarPanel("SolarPanel", 10, 5, grid);
-            Specimen spec = new Specimen("Jacques", 5, 5, 3, Color.Purple);
-            spec.X = 300;
-            spec.Y = 300;
-            grid.SelectedRover = rover1;
-            _level.SelectedGameObject = rover1;
-            rover2.Attach(bat2);
-            rover2.Attach(motor2);
-            rover2.Attach(sp2);
-            rover1.Attach(bat1);
-            rover1.Attach(motor1);
-            rover1.Attach(motor3);
-            rover1.Attach(sp1);
-            rover1.Attach(drill1);
-            rover1.Attach(radar1);
-            rover1.Attach(camera1);
-            rover1.X = 50;
-            rover1.Y = 60;
-            rover2.X = 500;
-            rover2.Y = 80;
-            _level.LevelGameObjects.Add(rover1);
-            _level.LevelGameObjects.Add(rover2);
-            _level.LevelGameObjects.Add(spec);
-        }
-        public void Loop()
-        {
-            SwinGame.ProcessEvents();
-            SwinGame.ClearScreen(Color.White);
-            // game Loop Goes here?
-            _level.InputHandler();
-            _level.Handlecollisions();
-            _level.Update();
+			grid.Level = _level;
+			//SwinGame.ShowSwinGameSplashScreen();
+			Rover rover1 = new Rover("Rover 1", 20, 10, grid);
+			Motor motor1 = new Motor("Motor", 10, 5, 2, grid);
+			Motor motor3 = new Motor("Motor", 10, 5, 2, grid);
+			Battery bat1 = new Battery("Battery", 10, 5, 500);
+			SolarPanel sp1 = new SolarPanel("SolarPanel", 10, 5, 1, grid);
+			Drill drill1 = new Drill("Drill", 10, 5, 10, grid);
+			Radar radar1 = new Radar("Radar", 10, 8, typeof(Specimen), 5, grid);
+			Camera camera1 = new Camera("Camera", 10, 8, 2, grid);
+			Rover rover2 = new Rover("MaddX5", 20, 10, grid);
+			Motor motor2 = new Motor("Motor", 10, 5, 2, grid);
+			Battery bat2 = new Battery("Battery", 10, 5, 200);
+			SolarPanel sp2 = new SolarPanel("SolarPanel", 10, 5, 1, grid);
+			Specimen spec = new Specimen("Jacques", 5, 5, 3, Color.Purple);
+			spec.X = 300;
+			spec.Y = 300;
+			grid.SelectedRover = rover1;
+			_level.SelectedGameObject = rover1;
+			rover2.Attach(bat2);
+			rover2.Attach(motor2);
+			rover2.Attach(sp2);
+			rover1.Attach(bat1);
+			rover1.Attach(motor1);
+			rover1.Attach(motor3);
+			rover1.Attach(sp1);
+			rover1.Attach(drill1);
+			rover1.Attach(radar1);
+			rover1.Attach(camera1);
+			rover1.X = 50;
+			rover1.Y = 60;
+			rover2.X = 500;
+			rover2.Y = 80;
+			_level.LevelGameObjects.Add(rover1);
+			_level.LevelGameObjects.Add(rover2);
+			_level.LevelGameObjects.Add(spec);
+		}
+		public void Loop()
+		{
+			SwinGame.ProcessEvents();
+			SwinGame.ClearScreen(Color.White);
+			// game Loop Goes here?
+			_gui.HandleInput();
+			_level.InputHandler();
+			_level.Handlecollisions();
+			_level.Update();
 			_gui.Render();
-			_level.Render();	
-            SwinGame.DrawFramerate(0, 0);
-            SwinGame.RefreshScreen(60);
-        }
-    }
+			_level.Render();
+			SwinGame.DrawFramerate(0, 0);
+			SwinGame.RefreshScreen(60);
+		}
+	}
 
 }

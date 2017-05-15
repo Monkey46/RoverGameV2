@@ -33,9 +33,6 @@ namespace RoverGameV2
                 return false;
             }
 
-            System.Diagnostics.Debug.WriteLine(Name + " is scanning");
-            Console.WriteLine("PPOOPO");
-
             Circle scanArea = new Circle();
             scanArea.Center = (Owner as Rover).Center;
             scanArea.Radius = GameGrid.CellSize * _range;
@@ -52,7 +49,11 @@ namespace RoverGameV2
 
             return true;
         }
-        public override void Render()
+		public override string Details()
+		{
+			return "Range: " + _range.ToString() + " Scan Type: " + _type.Name;
+		}
+		public override void Render()
         {
             SwinGame.FillRectangle(Color.DeepPink, X, Y, Width, Height);
         }

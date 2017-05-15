@@ -54,11 +54,12 @@
     <Compile Include="src\GUI\Button.cs" />
     <Compile Include="src\GUI\GUI.cs" />
     <Compile Include="src\IAttachable.cs" />
+    <Compile Include="src\IHasDetails.cs" />
     <Compile Include="src\IIsOwener.cs" />
     <Compile Include="src\Level.cs" />
     <Compile Include="src\GameGrid.cs" />
     <Compile Include="src\Motor.cs" />
-    <Compile Include="src\GUI\Panel.cs" />
+    <Compile Include="src\GUI\GUIPanel.cs" />
     <Compile Include="src\Radar.cs" />
     <Compile Include="src\Rover.cs" />
     <Compile Include="src\SolarPanel.cs" />

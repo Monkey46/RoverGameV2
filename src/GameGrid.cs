@@ -122,6 +122,18 @@ namespace RoverGameV2
         {
             return Level.Colsions.DrillColsions(drillArea, Level.LevelGameObjects);
         }
+		public void Drop(GameObject dropGO)
+		{
+			_selectedRover.Detach(dropGO as IAttachable);
+			dropGO.X = _selectedRover.X;
+			dropGO.Y = _selectedRover.Y;
+			_level.LevelGameObjects.Add(dropGO);
+		}
+		public void Pickup(GameObject pickUpGO)
+		{
+			_selectedRover.Attach(pickUpGO as IAttachable);
+			_level.LevelGameObjects.Remove(pickUpGO);
+		}
         public void Reder()
         {
             SwinGame.FillRectangle(Color.SandyBrown, 0, 0, NumberOfXCells * CellSize, NumberOfYCells * CellSize);

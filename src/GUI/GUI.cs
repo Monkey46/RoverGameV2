@@ -15,6 +15,7 @@ namespace RoverGameV2
 		float _y;
 		float _height;
 		float _width;
+		HashSet<GUIPanel> _panelList;
 
 		public GUI(GameGrid gamegrid)
 		{
@@ -24,20 +25,60 @@ namespace RoverGameV2
 			_y = 0;
 			_width = SwinGame.ScreenWidth() - _gamegrid.Width;
 			_height = _gamegrid.Height;
+			_panelList = new HashSet<GUIPanel>();
 		}
 		public void HandleInput()
 		{
+			if (SwinGame.MouseClicked(MouseButton.RightButton) )
+			{
+				GUIPanel removePanel = null;
+				foreach(GUIPanel iGUIPanel in _panelList)
+				{
+					if (iGUIPanel.IsAt(SwinGame.MousePosition()))
+					{
+						_gamegrid.Drop(iGUIPanel.GameObject);
+						removePanel = iGUIPanel;
+					}
+				}
+				_panelList.Remove(removePanel);
 
+			}
 		}
+		void MakePanel()
+		{
+		
+}
 		public void Render()
 		{
+			_panelList.Clear();
 			// Backgorund
 			//SwinGame.FillRectangle(_color, _gamegrid.Width, 0, SwinGame.ScreenWidth() - _gamegrid.Width, _gamegrid.Height);
 			SwinGame.FillRectangle(_color, _x, _y, _width, _height);
 			// get selected rover 
 			Rover seclectedR = _gamegrid.SelectedRover;
-			SwinGame.DrawText(seclectedR.Name, Color.Black, "name", 20, _x +4, _y+4);
-			//
+			SwinGame.DrawText(seclectedR.Name, Color.Red, _x + 4, _y + 4);
+			float panelSpacing = 54;
+			foreach (Device dev in seclectedR.Devices)
+			{
+				GUIPanel s = new GUIPanel(dev,Color.ForestGreen, 30, _width - 8, _x + 4, _y + panelSpacing);
+				s.Render();
+				panelSpacing += 40;
+				_panelList.Add(s);
+			}
+			foreach (Battery bat in seclectedR.Batteries)
+			{
+				GUIPanel s = new GUIPanel(bat, Color.BlueViolet ,30, _width - 4, _x + 4, _y + panelSpacing);
+				s.Render();
+				panelSpacing += 40;
+				_panelList.Add(s);
+			}
+			foreach (Specimen spec in seclectedR.Specimens)
+			{
+				GUIPanel s = new GUIPanel(spec,Color.WhiteSmoke, 30, _width - 4, _x + 4, _y + panelSpacing);
+				s.Render();
+				panelSpacing += 40;
+				_panelList.Add(s);
+			}
 		}
 	}
 }

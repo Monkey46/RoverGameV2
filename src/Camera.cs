@@ -12,11 +12,11 @@ namespace RoverGameV2
         float _range;
         public Camera(string name, float range, GameGrid gamegrid) : base(name,gamegrid)
         {
-            _range = range * gamegrid.CellSize;
+            _range = range;
         }
         public Camera(string name, float width, float height, float range, GameGrid gamegrid) : base(name, width, height, gamegrid)
         {
-            _range = range * gamegrid.CellSize;
+			_range = range;
         }
         public override bool Operate()
         {
@@ -27,7 +27,7 @@ namespace RoverGameV2
 
             Circle ViewArea = new Circle();
             ViewArea.Center = (Owner as Rover).Center;
-            ViewArea.Radius = _range;
+            ViewArea.Radius = _range * GameGrid.CellSize;
             SwinGame.DrawCircle(Color.Blue, ViewArea);
              List<GameObject>viewedGameObjects = GameGrid.GetScannedGameObjects(ViewArea);
             GameGrid.Level.RenderList = viewedGameObjects;
@@ -35,7 +35,11 @@ namespace RoverGameV2
             return true;
 
         }
-        public override void Render()
+		public override string Details()
+		{
+			return "Range " + _range.ToString();
+		}
+		public override void Render()
         {
             
         }
