@@ -27,6 +27,7 @@ namespace RoverGameV2
             _gameTick = 0;
             _scanDuration = 300;
             _renderList = new List<GameObject>();
+
         }
         public List<GameObject> LevelGameObjects
         {

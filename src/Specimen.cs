@@ -19,7 +19,6 @@ namespace RoverGameV2
 			_change = 1;
 			_count = 0;
 			_countMax = 0;
-			// @Task is it okay if don't use a private varible and only the parameter
 			Color = color;
 		}
 		public float Size

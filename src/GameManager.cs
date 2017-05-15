@@ -10,14 +10,17 @@ namespace RoverGameV2
      public class GameManager
     {
         Level _level;
-        public GameManager()
+		GUI _gui;
+
+		public GameManager()
         {
+			//Open the game window
+			SwinGame.OpenGraphicsWindow("GameMain", 800, 600);
 			// @Paul You already know to split this up
-            GameGrid grid = new GameGrid(20, 20, 30);
+			GameGrid grid = new GameGrid(20, 20, 30);
             _level = new Level(grid);
+			_gui = new GUI(grid);
             grid.Level = _level;
-            //Open the game window
-            SwinGame.OpenGraphicsWindow("GameMain", 800, 600);
             //SwinGame.ShowSwinGameSplashScreen();
             Rover rover1 = new Rover("Rover 1", 20, 10, grid);
             Motor motor1 = new Motor("Motor", 10, 5, 2, grid);
@@ -62,13 +65,10 @@ namespace RoverGameV2
             _level.InputHandler();
             _level.Handlecollisions();
             _level.Update();
-            _level.Render();
+			_gui.Render();
+			_level.Render();	
             SwinGame.DrawFramerate(0, 0);
             SwinGame.RefreshScreen(60);
-        }
-        private void RoverCreator()
-        {
-
         }
     }
 

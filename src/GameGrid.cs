@@ -38,14 +38,22 @@ namespace RoverGameV2
         {
             get { return _cells; }
         }
-        public int Width
+        public int NumberOfXCells
         {
             get { return _width; }
         }
-        public int Height
+        public int NumberOfYCells
         {
             get { return _height; }
         }
+		public float Width
+		{
+			get { return _width * CellSize; }
+		}
+		public float Height
+		{
+			get { return _height * CellSize; }
+		}
         public float CellSize
         {
             get { return _cellSize; }
@@ -116,16 +124,16 @@ namespace RoverGameV2
         }
         public void Reder()
         {
-            SwinGame.FillRectangle(Color.SandyBrown, 0, 0, Width * CellSize, Height * CellSize);
+            SwinGame.FillRectangle(Color.SandyBrown, 0, 0, NumberOfXCells * CellSize, NumberOfYCells * CellSize);
             // SwinGame.DrawBitmap(,);
 
-            for (float xline = CellSize; xline <= Width * CellSize; xline = xline + CellSize)
+            for (float xline = CellSize; xline <= NumberOfXCells * CellSize; xline = xline + CellSize)
             {
-                SwinGame.DrawLine(Color.Black, xline, 0, xline, Height * CellSize);
+                SwinGame.DrawLine(Color.Black, xline, 0, xline, NumberOfYCells * CellSize);
             }
-            for (float yline = CellSize; yline <= Height * CellSize; yline = yline + CellSize)
+            for (float yline = CellSize; yline <= NumberOfYCells * CellSize; yline = yline + CellSize)
             {
-                SwinGame.DrawLine(Color.Black, 0, yline, Width * CellSize, yline);
+                SwinGame.DrawLine(Color.Black, 0, yline, NumberOfXCells * CellSize, yline);
             }
         }
         /* Redunt Code from console based game
