@@ -25,13 +25,13 @@ namespace RoverGameV2
             Battery bat1 = new Battery("Battery", 10, 5, 500);
             SolarPanel sp1 = new SolarPanel("SolarPanel", 10, 5, grid);
             Drill drill1 = new Drill("Drill",10,5,10,grid);
-            Radar radar1 = new Radar("Radar", 10, 8, typeof(Specimen), grid);
+            Radar radar1 = new Radar("Radar", 10, 8,typeof(Specimen), 5, grid);
             Camera camera1 = new Camera("Camera", 10, 8, 2, grid);
             Rover rover2 = new Rover("MaddX5", 20, 10, grid);
             Motor motor2 = new Motor("Motor", 10, 5, 2, grid);
             Battery bat2 = new Battery("Battery", 10, 5, 200);
             SolarPanel sp2 = new SolarPanel("SolarPanel", 10, 5, grid);
-            Specimen spec = new Specimen("Jacques", 5, 5, 3);
+            Specimen spec = new Specimen("Jacques", 5, 5, 3, Color.Purple);
             spec.X = 300;
             spec.Y = 300;
             grid.SelectedRover = rover1;
@@ -66,5 +66,10 @@ namespace RoverGameV2
             SwinGame.DrawFramerate(0, 0);
             SwinGame.RefreshScreen(60);
         }
+        private void RoverCreator()
+        {
+
+        }
     }
+
 }

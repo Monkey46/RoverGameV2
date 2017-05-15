@@ -9,6 +9,9 @@ namespace RoverGameV2
 {
     public class SolarPanel : Device
     {
+        public SolarPanel(string name, GameGrid gamegrind) : base(name,gamegrind)
+        {
+        }
         public SolarPanel(string name, float width, float height, GameGrid gamegrind) : base(name, width, height,gamegrind)
         {
         }

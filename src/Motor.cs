@@ -11,7 +11,12 @@ namespace RoverGameV2
     {
         private Direction _direction;
         private float _maxSpeed;
-
+        public Motor(string name, float maxspeed, GameGrid gamegrind) : base(name,gamegrind)
+        {
+            _direction = Direction.none;
+            _maxSpeed = maxspeed;
+            // @Task Is there a way here to not duplicate code
+        }
         public Motor(string name, float width, float height,float maxspeed,GameGrid gamegrind) : base(name, width,height, gamegrind)
         {
             _direction = Direction.none;

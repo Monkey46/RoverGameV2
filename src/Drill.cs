@@ -11,6 +11,11 @@ namespace RoverGameV2
     {
         int _worn;
         float _drillsize;
+        public Drill(string name, float drillsize, GameGrid gamegrind) : base(name, gamegrind)
+        {
+            _worn = 0;
+            _drillsize = drillsize;
+        }
         public Drill(string name, float width, float height, float drillsize, GameGrid gamegrind) : base(name, width, height, gamegrind)
         {
             _worn = 0;
@@ -49,27 +54,6 @@ namespace RoverGameV2
             }
 
             return true;
-            /* OLD code
-			// @Paul So it changes it to a GameObject from a cell When both times it's casted as a GameObject Why?
-            Cell drillingcell = GameGrid.FindGameObjectLocation(Owner as GameObject);
-            GameObject drilledGO = drillingcell.Contents.Find(x => x is Specimen);
-            if (drilledGO == null)
-            {
-                _worn += 10;
-                Console.WriteLine(Name + " drilled nothing");
-                return false;
-            }
-            else
-            {
-                Console.WriteLine(Name + " drilled Successfully");
-                (Owner as Rover).Collect(drilledGO as Specimen);
-                drillingcell.Contents.RemoveAll(x => x == drilledGO);
-                _worn += 5;
-                return true;
-            }
-            */
-
-
         }
         public override void Render()
         {

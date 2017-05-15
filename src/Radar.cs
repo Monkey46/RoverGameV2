@@ -11,10 +11,16 @@ namespace RoverGameV2
     {
         private Type _type;
         private int _range;
-        public Radar(string name, float width, float height, Type type, GameGrid gamegrind) : base(name, width, height, gamegrind)
+        public Radar(string name, Type type, int range, GameGrid gamegrind) : base (name, gamegrind)
         {
             _type = type;
-            _range = 5;
+            _range = range;
+            // @Task Is there a way here to not duplicate code
+        }
+        public Radar(string name, float width, float height, Type type, int range, GameGrid gamegrind) : base(name, width, height, gamegrind)
+        {
+            _type = type;
+            _range = range;
         }
         public Type Type
         {
@@ -36,7 +42,7 @@ namespace RoverGameV2
 
             List<GameObject> scanedGOs = GameGrid.GetScannedGameObjects(scanArea);
 
-            foreach (GameObject scanGO in scanedGOs)
+            foreach (GameObject scanGO in scanedGOs.FindAll(x => x.GetType() == _type))
             {
                 if (scanGO != Owner)
                 {
