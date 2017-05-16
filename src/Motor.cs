@@ -61,6 +61,15 @@ namespace RoverGameV2
 		{
 			return "Motor Speed: " + _maxSpeed.ToString();
 		}
+		public override List<string> AllDetails()
+		{
+			List<string> allDetails = new List<string>();
+			allDetails.Add(Name);
+			allDetails.Add("Conected to " + ConnectedBatteryName);
+			allDetails.Add("Speed: " + _maxSpeed);
+			allDetails.Add("Decsription: Blah Blah Balh");
+			return allDetails;
+		}
 		public override void Render()
         {
             SwinGame.FillRectangle(Color.DeepPink, X, Y, Width, Height);

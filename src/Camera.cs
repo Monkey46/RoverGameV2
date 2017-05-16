@@ -39,6 +39,15 @@ namespace RoverGameV2
 		{
 			return "Range " + _range.ToString();
 		}
+		public override List<string> AllDetails()
+		{
+			List<string> allDetails = new List<string>();
+			allDetails.Add(Name);
+			allDetails.Add("Conected to " + ConnectedBatteryName);
+			allDetails.Add("Camera Range: " + _range);
+			allDetails.Add("Decsription: Blah Blah Balh");
+			return allDetails;
+		}
 		public override void Render()
         {
             

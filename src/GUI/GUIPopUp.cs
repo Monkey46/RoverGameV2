@@ -6,12 +6,8 @@ using System.Threading.Tasks;
 
 namespace RoverGameV2
 {
-	public class Button
+	public class GUIPopUp
 	{
-		public Button()
-		{
-
-		}
-
+		
 	}
 }

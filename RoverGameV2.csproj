@@ -51,8 +51,9 @@
     <Compile Include="src\Drill.cs" />
     <Compile Include="src\GameMain.cs" />
     <Compile Include="src\GameObject.cs" />
-    <Compile Include="src\GUI\Button.cs" />
     <Compile Include="src\GUI\GUI.cs" />
+    <Compile Include="src\GUI\GUIPopUp.cs" />
+    <Compile Include="src\GUI\GUITextBox.cs" />
     <Compile Include="src\IAttachable.cs" />
     <Compile Include="src\IHasDetails.cs" />
     <Compile Include="src\IIsOwener.cs" />

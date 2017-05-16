@@ -50,6 +50,14 @@ namespace RoverGameV2
 		{
 			return "Size: " + _size;
 		}
+		public override List<string> AllDetails()
+		{
+			List<string> allDetails = new List<string>();
+			allDetails.Add(Name);
+			allDetails.Add("Size: " + Size);
+			allDetails.Add("Decsription: Blah Blah Balh");
+			return allDetails;
+		}
 		public override void Render()
 		{
 			SwinGame.FillRectangle(Color, X, Y, Width, Height);

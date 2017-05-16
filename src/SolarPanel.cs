@@ -33,6 +33,15 @@ namespace RoverGameV2
 		{
 			return "Charge Rate: " + _chargeRate.ToString();
 		}
+		public override List<string> AllDetails()
+		{
+			List<string> allDetails = new List<string>();
+			allDetails.Add(Name);
+			allDetails.Add("Conected to " + ConnectedBatteryName);
+			allDetails.Add("Charge Rate: " + _chargeRate);
+			allDetails.Add("Decsription: Blah Blah Balh");
+			return allDetails;
+		}
 		public override void Render()
 		{
 			SwinGame.FillRectangle(Color.DeepPink, X, Y, Width, Height);

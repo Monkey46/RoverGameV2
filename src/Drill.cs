@@ -59,6 +59,16 @@ namespace RoverGameV2
 		{
 			return "Drill Size: " + _drillsize.ToString() + " Worn: " + _worn.ToString();
 		}
+		public override List<string> AllDetails()
+		{
+			List<string> allDetails = new List<string>();
+			allDetails.Add(Name);
+			allDetails.Add("Conected to " + ConnectedBatteryName);
+			allDetails.Add("Drill Size: " + _drillsize);
+			allDetails.Add("Worn: " + Worn + "%");
+			allDetails.Add("Decsription: Blah Blah Balh");
+			return allDetails;
+		}
 		public override void Render()
 		{
 			SwinGame.FillRectangle(Color.DeepPink, X, Y, Width, Height);

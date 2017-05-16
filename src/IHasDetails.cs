@@ -9,6 +9,6 @@ namespace RoverGameV2
 	public interface IHasDetails
 	{
 		string Details();
-		// @Task Maybe what this Otherwise Delete
+		// @Task Maybe I need this or Otherwise Delete
 	}
 }

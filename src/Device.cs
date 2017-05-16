@@ -14,17 +14,11 @@ namespace RoverGameV2
 		// @Paul THe Chain Should end at the top Or bottom when i think about it idk ask matt
 		public Device(string name, GameGrid gamegrid) : this(name, 8, 5, gamegrid)
 		{
-
 		}
-		public Device(string name, float width, float height, GameGrid gamegrid) : this(name, width, height, gamegrid, gamegrid)
-		{
-			// _gamegrind = gamegrind;
-			// _owner = gamegrind;
-		}
-		public Device(string name, float width, float height, GameGrid gamegrind, IIsOwener owner) : base(name, width, height)
+		public Device(string name, float width, float height, GameGrid gamegrind) : base(name, width, height)
 		{
 			_gamegrind = gamegrind;
-			_owner = owner;
+			_owner = gamegrind;
 		}
 		public IIsOwener Owner
 		{
@@ -35,6 +29,10 @@ namespace RoverGameV2
 		{
 			get { return _connectedbattery; }
 			set { _connectedbattery = value; }
+		}
+		public string ConnectedBatteryName
+		{
+			get { return _connectedbattery?.Name ?? "none"; }
 		}
 		public GameGrid GameGrid
 		{

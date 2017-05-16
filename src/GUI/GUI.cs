@@ -29,10 +29,10 @@ namespace RoverGameV2
 		}
 		public void HandleInput()
 		{
-			if (SwinGame.MouseClicked(MouseButton.RightButton) )
+			if (SwinGame.MouseClicked(MouseButton.RightButton))
 			{
 				GUIPanel removePanel = null;
-				foreach(GUIPanel iGUIPanel in _panelList)
+				foreach (GUIPanel iGUIPanel in _panelList)
 				{
 					if (iGUIPanel.IsAt(SwinGame.MousePosition()))
 					{
@@ -43,11 +43,17 @@ namespace RoverGameV2
 				_panelList.Remove(removePanel);
 
 			}
+			if (SwinGame.MouseClicked(MouseButton.LeftButton))
+			{
+				foreach (GUIPanel iGUIPanel in _panelList)
+				{
+					if (iGUIPanel.IsAt(SwinGame.MousePosition()))
+					{
+						_gamegrid.Level.SelectedGameObject = iGUIPanel.GameObject;
+					}
+				}
+			}
 		}
-		void MakePanel()
-		{
-		
-}
 		public void Render()
 		{
 			_panelList.Clear();
@@ -60,25 +66,28 @@ namespace RoverGameV2
 			float panelSpacing = 54;
 			foreach (Device dev in seclectedR.Devices)
 			{
-				GUIPanel s = new GUIPanel(dev,Color.ForestGreen, 30, _width - 8, _x + 4, _y + panelSpacing);
+				GUIPanel s = new GUIPanel(dev, Color.ForestGreen, _x + 4, _y + panelSpacing, 30, _width - 4);
 				s.Render();
 				panelSpacing += 40;
 				_panelList.Add(s);
 			}
 			foreach (Battery bat in seclectedR.Batteries)
 			{
-				GUIPanel s = new GUIPanel(bat, Color.BlueViolet ,30, _width - 4, _x + 4, _y + panelSpacing);
+				GUIPanel s = new GUIPanel(bat, Color.BlueViolet, _x + 4, _y + panelSpacing, 30, _width - 4);
 				s.Render();
 				panelSpacing += 40;
 				_panelList.Add(s);
 			}
 			foreach (Specimen spec in seclectedR.Specimens)
 			{
-				GUIPanel s = new GUIPanel(spec,Color.WhiteSmoke, 30, _width - 4, _x + 4, _y + panelSpacing);
+				GUIPanel s = new GUIPanel(spec, Color.WhiteSmoke, _x + 4, _y + panelSpacing, 30, _width - 4);
 				s.Render();
 				panelSpacing += 40;
 				_panelList.Add(s);
 			}
+			// render Info box
+			GUITextBox InfoBox = new GUITextBox(_gamegrid.Level.SelectedGameObject, _x + 4, _y + panelSpacing, 200, _width - 4);
+			InfoBox.Render();
 		}
 	}
 }

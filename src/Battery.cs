@@ -33,6 +33,14 @@ namespace RoverGameV2
 		{
 			return "Power Level: " + _powerlvl.ToString();
 		}
+		public override List<string> AllDetails()
+		{
+			List<string> allDetails = new List<string>();
+			allDetails.Add(Name);
+			allDetails.Add("Current Power Level: " + Power);
+			allDetails.Add("Decsription: Blah Blah Balh");
+			return allDetails;
+		}
 
 		public override void Render()
 		{

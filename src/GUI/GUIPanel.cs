@@ -15,9 +15,7 @@ namespace RoverGameV2
 		float _x;
 		float _y;
 		Color _panelColor;
-		Button dropButton;
-
-		public GUIPanel(IHasDetails panelGO, Color panelColor,float height, float width, float x, float y)
+		public GUIPanel(IHasDetails panelGO, Color panelColor, float x, float y, float height, float width)
 		{
 			_gameObject = panelGO;
 			_height = height;
@@ -39,8 +37,6 @@ namespace RoverGameV2
 			SwinGame.FillRectangle(_panelColor, _x, _y, _width, _height);
 			SwinGame.DrawText((_gameObject as GameObject).Name, Color.Black, _x + 4, _y + 4);
 			SwinGame.DrawText(_gameObject.Details(), Color.Black, _x + 10, _y + 14);
-			// @Task Insert Button class
-			//SwinGame.FillRectangle(Color.AliceBlue, _x, _y + 2, _width, _hieght - 4);
 		}
 	}
 }
