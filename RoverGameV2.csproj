@@ -52,10 +52,12 @@
     <Compile Include="src\GameMain.cs" />
     <Compile Include="src\GameObject.cs" />
     <Compile Include="src\GUI\GUI.cs" />
+    <Compile Include="src\GUI\GUIElementDrop.cs" />
+    <Compile Include="src\GUI\GUIPart.cs" />
     <Compile Include="src\GUI\GUIPopUp.cs" />
+    <Compile Include="src\GUI\GUIPopUpElement.cs" />
     <Compile Include="src\GUI\GUITextBox.cs" />
     <Compile Include="src\IAttachable.cs" />
-    <Compile Include="src\IHasDetails.cs" />
     <Compile Include="src\IIsOwener.cs" />
     <Compile Include="src\Level.cs" />
     <Compile Include="src\GameGrid.cs" />

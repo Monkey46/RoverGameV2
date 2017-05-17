@@ -66,6 +66,7 @@ namespace RoverGameV2
 			_level.InputHandler();
 			_level.Handlecollisions();
 			_level.Update();
+			_gui.Update();
 			_gui.Render();
 			_level.Render();
 			SwinGame.DrawFramerate(0, 0);

@@ -7,7 +7,7 @@ using SwinGameSDK;
 
 namespace RoverGameV2
 {
-	public class Battery : GameObject, IAttachable, IHasDetails
+	public class Battery : GameObject, IAttachable
 
 	{
 		private int _powerlvl;
@@ -29,7 +29,7 @@ namespace RoverGameV2
 			return true;
 		}
 
-		public string Details()
+		public override string Details()
 		{
 			return "Power Level: " + _powerlvl.ToString();
 		}

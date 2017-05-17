@@ -7,7 +7,7 @@ using SwinGameSDK;
 
 namespace RoverGameV2
 {
-	public class Specimen : GameObject, IHasDetails
+	public class Specimen : GameObject
 	{
 		private float _size;
 		private float _change;
@@ -46,7 +46,7 @@ namespace RoverGameV2
 			get;
 			set;
 		}
-		public string Details()
+		public override string Details()
 		{
 			return "Size: " + _size;
 		}

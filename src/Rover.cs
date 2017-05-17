@@ -56,13 +56,17 @@ namespace RoverGameV2
 				camera.Operate();
 			}
 		}
+		public override string Details()
+		{
+			return "";
+		}
 		public override List<string> AllDetails()
 		{
 			List<string> allDetails = new List<string>();
 			allDetails.Add(Name);
 			allDetails.Add("Has " + _devices.Count + " Devices");
 			allDetails.Add("Has " + _batteries.Count + " Batteries Connected and  Current Total power is " + TotalPower);
-			allDetails.Add("Has "+ _specimens.Count +" Specimens");
+			allDetails.Add("Has " + _specimens.Count + " Specimens");
 			allDetails.Add("Decsription: Blah Blah Balh");
 			return allDetails;
 		}
@@ -76,44 +80,34 @@ namespace RoverGameV2
 				return total;
 			}
 		}
+		private Battery HighestBattery()
+		{
+			if (_batteries.Count == 0)
+			{
+				return null;
+			}
+			Battery highestBat = _batteries.First();
+			foreach (Battery bat in _batteries)
+			{
+				if (highestBat.Power < bat.Power)
+				{
+					highestBat = bat;
+				}
+			}
+			return highestBat;
+		}
 		public void Attach(IAttachable attachItem)
 		{
 			if (attachItem is Battery)
 			{
 				_batteries.Add(attachItem as Battery);
-				/*
-                Cell cell = _gamegrind.FindGameObjectLocation(attachItem as GameObject);
-                if (cell != null)
-                {
-                    cell.Contents.RemoveAll(x => x == attachItem);
-                }
-                */
 			}
 			else
 			{
 				(attachItem as Device).Owner = this;
 				_devices.Add(attachItem as Device);
-				if (_batteries.Count != 0)
-				{
-					// find highest battery power
-					Battery highestBat = _batteries.First();
-					foreach (Battery bat in _batteries)
-					{
-						if (highestBat.Power < bat.Power)
-						{
-							highestBat = bat;
-						}
-					}
-				// connect attachitem to high bat
-				(attachItem as Device).ConnectedBattery = highestBat;
-				}
-				/*
-                Cell cell = _gamegrind.FindGameObjectLocation(attachItem as GameObject);
-                if (cell != null)
-                {
-                    cell.Contents.RemoveAll(x => x == attachItem);
-                }
-                */
+
+				(attachItem as Device).ConnectedBattery = HighestBattery();
 			}
 		}
 		public void Detach(IAttachable attachItem)
@@ -128,6 +122,7 @@ namespace RoverGameV2
 						dev.ConnectedBattery = null;
 					}
 				}
+				_gamegrind.Level.RenderList.Clear();
 			}
 			else
 			{

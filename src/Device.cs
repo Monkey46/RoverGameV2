@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RoverGameV2
 {
-	public abstract class Device : GameObject, IAttachable, IHasDetails
+	public abstract class Device : GameObject, IAttachable
 	{
 		private Battery _connectedbattery;
 		private GameGrid _gamegrind;
@@ -58,7 +58,6 @@ namespace RoverGameV2
 			}
 			return true;
 		}
-		public abstract string Details();
 		public abstract bool Operate();
 	}
 }

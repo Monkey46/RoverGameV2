@@ -114,6 +114,7 @@ namespace RoverGameV2
 		public abstract void Update();
 		public abstract void Render();
 		public abstract List<string> AllDetails();
+		public abstract string Details();
 		public bool IsAt(Point2D _point)
 		{
 			return SwinGame.PointInRect(_point, X, Y, Width, Height);
