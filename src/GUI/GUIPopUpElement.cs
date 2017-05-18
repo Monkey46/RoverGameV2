@@ -41,6 +41,6 @@ namespace RoverGameV2
 		{
 			return SwinGame.PointInRect(_point, X, Y, Width, Height);
 		}
-		public abstract void Action();
+		public abstract bool Action();
 	}
 }

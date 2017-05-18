@@ -58,8 +58,10 @@ namespace RoverGameV2
 						{
 							if (ele.IsAt(SwinGame.MousePosition()))
 							{
-								ele.Action();
-								_popup = null;
+								if (ele.Action())
+								{
+									_popup = null;
+								}
 							}
 						}
 					}
@@ -84,7 +86,11 @@ namespace RoverGameV2
 			float spacing = 50 + _yPadding;
 			foreach (Device dev in _seclectedR.Devices)
 			{
-				GUIPanel s = new GUIPanel(dev, Color.ForestGreen, _x + _xPadding, _y + spacing, _panelHeight, _width - 4);
+				Color panelColor;
+				if (dev.ConnectedBattery == null)
+				{ panelColor = Color.DarkRed; }
+				else { panelColor = Color.ForestGreen; }
+				GUIPanel s = new GUIPanel(dev, panelColor, _x + _xPadding, _y + spacing, _panelHeight, _width - 4);
 				spacing += _panelSpacing;
 				_partList.Add(s);
 			}

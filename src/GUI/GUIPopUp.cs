@@ -33,7 +33,12 @@ namespace RoverGameV2
 			SwinGame.FillRectangle(_color, X, Y, Width, Height);
 			GUIElementDrop drop = new GUIElementDrop(X, Y, Width, _gameObj, _gamegrid);
 			_elements.Add(drop);
-			//GUIPopUpElement Connect = new GUIPopUpElement();
+			if (_gameObj is Device)
+			{
+				GUIElementConnect connect = new GUIElementConnect(X, Y+30, Width, _gameObj, _gamegrid);
+				_elements.Add(connect);
+				connect.Render();
+			}
 			drop.Render();
 		}
 		public bool IsAt(Point2D _point)

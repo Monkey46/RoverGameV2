@@ -52,6 +52,7 @@
     <Compile Include="src\GameMain.cs" />
     <Compile Include="src\GameObject.cs" />
     <Compile Include="src\GUI\GUI.cs" />
+    <Compile Include="src\GUI\GUIElementConnect.cs" />
     <Compile Include="src\GUI\GUIElementDrop.cs" />
     <Compile Include="src\GUI\GUIPart.cs" />
     <Compile Include="src\GUI\GUIPopUp.cs" />
