@@ -13,14 +13,14 @@ namespace RoverGameV2
 		GameGrid _gamegrid;
 		List<GUIPopUpElement> _elements;
 
-		public GUIPopUp(Point2D mousePos, GameObject gameObj, GameGrid gamegrid)
+		public GUIPopUp(Point2D mousePos, GameObject gameObj, GameGrid gamegrid, List<GUIPopUpElement> elements)
 		{
 			X = mousePos.X;
 			Y = mousePos.Y;
 			Width = 100;
-			Height = 60;
+			Height = elements.Count *20;
 			_gameObj = gameObj;
-			_elements = new List<GUIPopUpElement>();
+			_elements = elements;
 			_gamegrid = gamegrid;
 		}
 		public List<GUIPopUpElement> Elements
@@ -29,17 +29,11 @@ namespace RoverGameV2
 		}
 		public override void Render()
 		{
-			_elements.Clear();
 			SwinGame.FillRectangle(_color, X, Y, Width, Height);
-			GUIElementDrop drop = new GUIElementDrop(X, Y, Width, _gameObj, _gamegrid);
-			_elements.Add(drop);
-			if (_gameObj is Device)
+			foreach (GUIPopUpElement element in _elements)
 			{
-				GUIElementConnect connect = new GUIElementConnect(X, Y+30, Width, _gameObj, _gamegrid);
-				_elements.Add(connect);
-				connect.Render();
+				element.Render();
 			}
-			drop.Render();
 		}
 		public bool IsAt(Point2D _point)
 		{

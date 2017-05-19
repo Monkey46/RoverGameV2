@@ -15,8 +15,8 @@ namespace RoverGameV2
 		public GUIPopUpElement(string name, float x, float y, float width, GameObject gameObj, GameGrid gamegrid)
 		{
 			_name = name;
-			XPadding = 4;
-			YPadding = 4;
+			XPadding = 2;
+			YPadding = 2;
 			X = x;
 			Y = y;
 			Width = width;
@@ -35,12 +35,12 @@ namespace RoverGameV2
 		public override void Render()
 		{
 			SwinGame.FillRectangle(Color.AliceBlue,X+XPadding, Y+YPadding,Width-XPadding, Height);
-			SwinGame.DrawText(_name, Color.Black, X + XPadding, Y + YPadding);
+			SwinGame.DrawText(_name, Color.Black, X + XPadding*2, Y + YPadding*2);
 		}
 		public bool IsAt(Point2D _point)
 		{
 			return SwinGame.PointInRect(_point, X, Y, Width, Height);
 		}
-		public abstract bool Action();
+		public abstract GUIPopUp Action();
 	}
 }

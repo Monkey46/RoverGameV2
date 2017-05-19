@@ -13,13 +13,13 @@ namespace RoverGameV2
 
 		}
 
-		public override bool Action()
+		public override GUIPopUp Action()
 		{
 			// Drop Game object
 			GameGrid.Drop(GameObj);
 			// RemovePanel
 			//removePanel = iGUIPanel;
-			return true;
+			return null;
 		}
 	}
 }

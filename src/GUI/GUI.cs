@@ -16,7 +16,7 @@ namespace RoverGameV2
 		float _height;
 		float _width;
 		List<GUIPart> _partList;
-		GUIPopUp _popup;
+		List<GUIPopUp> _popUps;
 		float _xPadding = 4;
 		float _yPadding = 4;
 		float _panelSpacing = 35;
@@ -32,40 +32,62 @@ namespace RoverGameV2
 			_width = SwinGame.ScreenWidth() - _gamegrid.Width;
 			_height = _gamegrid.Height;
 			_partList = new List<GUIPart>();
+			_popUps = new List<GUIPopUp>();
 		}
 		public void HandleInput()
 		{
 			if (SwinGame.MouseClicked(MouseButton.RightButton))
 			{
-				GUIPanel removePanel = null;
 				foreach (GUIPanel iGUIPanel in _partList.FindAll(x => x is GUIPanel))
 				{
 					if (iGUIPanel.IsAt(SwinGame.MousePosition()))
 					{
-						_popup = new GUIPopUp(SwinGame.MousePosition(), iGUIPanel.GameObject, _gamegrid);
+						List<GUIPopUpElement> popupElements = new List<GUIPopUpElement>();
+						GUIElementDrop drop = new GUIElementDrop(SwinGame.MousePosition().X, SwinGame.MousePosition().Y, 96, iGUIPanel.GameObject, _gamegrid);
+						popupElements.Add(drop);
+						if (iGUIPanel.GameObject is Device)
+						{
+							GUIElementConnect connect = new GUIElementConnect(SwinGame.MousePosition().X, SwinGame.MousePosition().Y + 20, 96, iGUIPanel.GameObject, _gamegrid);
+							popupElements.Add(connect);
+						}
+						_popUps.Clear();
+						_popUps.Add(new GUIPopUp(SwinGame.MousePosition(), iGUIPanel.GameObject, _gamegrid, popupElements));
 					}
 				}
-				_partList.Remove(removePanel);
-
 			}
 			if (SwinGame.MouseClicked(MouseButton.LeftButton))
 			{
-				if (_popup != null)
+				if (_popUps.Count != 0)
 				{
-					if (_popup.IsAt(SwinGame.MousePosition()))
+					bool clearpopUp = false;
+					GUIPopUp temp = null;
+					foreach (GUIPopUp popup in _popUps)
 					{
-						foreach (GUIPopUpElement ele in _popup.Elements)
+						if (popup.IsAt(SwinGame.MousePosition()))
 						{
-							if (ele.IsAt(SwinGame.MousePosition()))
+							foreach (GUIPopUpElement ele in popup.Elements)
 							{
-								if (ele.Action())
+								if (ele.IsAt(SwinGame.MousePosition()))
 								{
-									_popup = null;
+									GUIPopUp newPopUp = ele.Action();
+									if (newPopUp == null)
+									{
+										clearpopUp = true;
+									}
+									else
+									{
+										temp = newPopUp;
+									}
 								}
 							}
 						}
+						else clearpopUp = true;
 					}
-					else _popup = null;
+					_popUps.Add(temp);
+					if (clearpopUp == true)
+					{
+						_popUps.Clear();
+					}	
 				}
 				else
 				{
@@ -118,9 +140,9 @@ namespace RoverGameV2
 			{
 				iGUIPart.Render();
 			}
-			if (_popup != null)
+			foreach(GUIPopUp popUp in _popUps)
 			{
-				_popup.Render();
+				popUp.Render();
 			}
 		}
 	}
