@@ -9,19 +9,19 @@ namespace RoverGameV2
 {
 	public class GUI
 	{
-		GameGrid _gamegrid;
-		Color _color;
-		float _x;
-		float _y;
-		float _height;
-		float _width;
-		List<GUIPart> _partList;
-		List<GUIPopUp> _popUps;
-		float _xPadding = 4;
-		float _yPadding = 4;
-		float _panelSpacing = 35;
-		float _panelHeight = 30;
-		Rover _seclectedR;
+		private GameGrid _gamegrid;
+		private Color _color;
+		private float _x;
+		private float _y;
+		private float _height;
+		private float _width;
+		private List<GUIPart> _partList;
+		private List<GUIPopUp> _popUps;
+		private float _xPadding = 4;
+		private float _yPadding = 4;
+		private float _panelSpacing = 35;
+		private float _panelHeight = 30;
+		private Rover _seclectedR;
 
 		public GUI(GameGrid gamegrid)
 		{
@@ -42,14 +42,7 @@ namespace RoverGameV2
 				{
 					if (iGUIPanel.IsAt(SwinGame.MousePosition()))
 					{
-						List<GUIPopUpElement> popupElements = new List<GUIPopUpElement>();
-						GUIElementDrop drop = new GUIElementDrop(SwinGame.MousePosition().X, SwinGame.MousePosition().Y, 96, iGUIPanel.GameObject, _gamegrid);
-						popupElements.Add(drop);
-						if (iGUIPanel.GameObject is Device)
-						{
-							GUIElementConnect connect = new GUIElementConnect(SwinGame.MousePosition().X, SwinGame.MousePosition().Y + 20, 96, iGUIPanel.GameObject, _gamegrid);
-							popupElements.Add(connect);
-						}
+						List<GUIPopUpElement> popupElements = MakePopUpElements(iGUIPanel);
 						_popUps.Clear();
 						_popUps.Add(new GUIPopUp(SwinGame.MousePosition(), iGUIPanel.GameObject, _gamegrid, popupElements));
 					}
@@ -59,45 +52,11 @@ namespace RoverGameV2
 			{
 				if (_popUps.Count != 0)
 				{
-					bool clearpopUp = false;
-					GUIPopUp temp = null;
-					foreach (GUIPopUp popup in _popUps)
-					{
-						if (popup.IsAt(SwinGame.MousePosition()))
-						{
-							foreach (GUIPopUpElement ele in popup.Elements)
-							{
-								if (ele.IsAt(SwinGame.MousePosition()))
-								{
-									GUIPopUp newPopUp = ele.Action();
-									if (newPopUp == null)
-									{
-										clearpopUp = true;
-									}
-									else
-									{
-										temp = newPopUp;
-									}
-								}
-							}
-						}
-						else clearpopUp = true;
-					}
-					_popUps.Add(temp);
-					if (clearpopUp == true)
-					{
-						_popUps.Clear();
-					}	
+					PopUpChecker();
 				}
 				else
 				{
-					foreach (GUIPanel iGUIPanel in _partList.FindAll(x => x is GUIPanel))
-					{
-						if (iGUIPanel.IsAt(SwinGame.MousePosition()))
-						{
-							_gamegrid.Level.SelectedGameObject = iGUIPanel.GameObject;
-						}
-					}
+					SelectPanel();
 				}
 			}
 		}
@@ -140,9 +99,63 @@ namespace RoverGameV2
 			{
 				iGUIPart.Render();
 			}
-			foreach(GUIPopUp popUp in _popUps)
+			foreach (GUIPopUp popUp in _popUps)
 			{
 				popUp.Render();
+			}
+		}
+		private List<GUIPopUpElement> MakePopUpElements(GUIPanel iGUIPanel)
+		{
+			List<GUIPopUpElement> popupElements = new List<GUIPopUpElement>();
+			GUIElementDrop drop = new GUIElementDrop(SwinGame.MousePosition().X, SwinGame.MousePosition().Y, 96, iGUIPanel.GameObject, _gamegrid);
+			popupElements.Add(drop);
+			if (iGUIPanel.GameObject is Device)
+			{
+				GUIElementConnect connect = new GUIElementConnect(SwinGame.MousePosition().X, SwinGame.MousePosition().Y + 20, 96, iGUIPanel.GameObject, _gamegrid);
+				popupElements.Add(connect);
+			}
+			return popupElements;
+		}
+		private void SelectPanel()
+		{
+			foreach (GUIPanel iGUIPanel in _partList.FindAll(x => x is GUIPanel))
+			{
+				if (iGUIPanel.IsAt(SwinGame.MousePosition()))
+				{
+					_gamegrid.Level.SelectedGameObject = iGUIPanel.GameObject;
+				}
+			}
+		}
+		private void PopUpChecker()
+		{
+			bool clearpopUp = false;
+			GUIPopUp temp = null;
+			foreach (GUIPopUp popup in _popUps)
+			{
+				if (popup.IsAt(SwinGame.MousePosition()))
+				{
+					foreach (GUIPopUpElement ele in popup.Elements)
+					{
+						if (ele.IsAt(SwinGame.MousePosition()))
+						{
+							GUIPopUp newPopUp = ele.Action();
+							if (newPopUp == null)
+							{
+								clearpopUp = true;
+							}
+							else
+							{
+								temp = newPopUp;
+							}
+						}
+					}
+				}
+				else clearpopUp = true;
+			}
+			_popUps.Add(temp);
+			if (clearpopUp == true)
+			{
+				_popUps.Clear();
 			}
 		}
 	}

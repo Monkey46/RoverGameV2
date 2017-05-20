@@ -11,7 +11,6 @@ namespace RoverGameV2
 		private Battery _connectedbattery;
 		private GameGrid _gamegrind;
 		private IIsOwener _owner;
-		// @Paul THe Chain Should end at the top Or bottom when i think about it idk ask matt
 		public Device(string name, GameGrid gamegrid) : this(name, 8, 5, gamegrid)
 		{
 		}

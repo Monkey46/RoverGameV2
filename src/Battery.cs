@@ -46,7 +46,6 @@ namespace RoverGameV2
 		{
 			SwinGame.FillRectangle(Color.Blue, X, Y, Width, Height);
 		}
-		// @Paul What does this do?
 		public override void Update()
 		{
 

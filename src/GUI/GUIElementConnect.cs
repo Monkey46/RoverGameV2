@@ -25,10 +25,6 @@ namespace RoverGameV2
 				spacing += 20;
 			}
 			GUIPopUp connectPopUp = new GUIPopUp(SwinGame.MousePosition(), GameObj, GameGrid, connectBatteries);
-			//new type of popup
-			//list all batteries of selected rover + none
-			// @Task need to add this popup to the GUI render list
-
 			return connectPopUp;
 		}
 	}

@@ -7,10 +7,9 @@ using SwinGameSDK;
 
 namespace RoverGameV2
 {
-    // @Paul So how does this relate to the Other Collison methods
-    public class ColsionManager
+    public class ColsionProsser
     {
-        public ColsionManager()
+        public ColsionProsser()
         {
 
         }
@@ -45,6 +44,13 @@ namespace RoverGameV2
                 GO1.HasCollided(GO2);
             }
         }
+		public void WallCollisions(List<GameObject> sideCells)
+		{
+			foreach (GameObject iGO in sideCells)
+			{
+				//
+			}
+		}
         public void DetectColsions(List<GameObject> cellList)
         {
             foreach (GameObject GO1 in cellList)

@@ -8,7 +8,6 @@ namespace RoverGameV2
 {
 	public abstract class GameObject
 	{
-		// @Paul You were right Combine this stuff into Point2D
 		private string _name;
 		private float _x;
 		private float _y;
@@ -42,10 +41,12 @@ namespace RoverGameV2
 		public float X2
 		{
 			get { return _x + _width; }
+			set { _x = value - _width; }
 		}
 		public float Y2
 		{
 			get { return _y + _height; }
+			set { _y = value - _height; }
 		}
 		public float Width
 		{
@@ -121,12 +122,14 @@ namespace RoverGameV2
 		}
 		public void HasCollided(GameObject coilliedWith)
 		{
+			// @Task Make to abstruct Method
 			if (coilliedWith is Rover)
 			{
 				// @Task needs Lots of Resreach and fixing
 				_xVelocity = -(2 * _preXVelocity);
 				_yVelocity = -(2 * _preYVelocity);
 			}
+
 		}
 	}
 }

@@ -10,7 +10,7 @@ namespace RoverGameV2
 	public class Level
 	{
 		private GameGrid _gamegrid;
-		private ColsionManager _colsionManager;
+		private ColsionProsser _colsionManager;
 		private List<GameObject> _levelList;
 		private List<GameObject> _renderList;
 		private GameObject _selectedGO;
@@ -21,7 +21,7 @@ namespace RoverGameV2
 		public Level(GameGrid gamegrid)
 		{
 			_gamegrid = gamegrid;
-			_colsionManager = new ColsionManager();
+			_colsionManager = new ColsionProsser();
 			_levelList = new List<GameObject>();
 			_scanedGameObjects = new List<Tuple<Point2D, int>>();
 			_gameTick = 0;
@@ -44,7 +44,7 @@ namespace RoverGameV2
 			get { return _selectedGO; }
 			set { _selectedGO = value; }
 		}
-		public ColsionManager Colsions
+		public ColsionProsser Colsions
 		{
 			get { return _colsionManager; }
 		}
@@ -70,7 +70,7 @@ namespace RoverGameV2
 			// Charge with SolarPanel
 			if (SwinGame.KeyDown(KeyCode.SpaceKey))
 			{
-				_gamegrid.SelectedRover.Charge();
+				_gamegrid.SelectedRover.ChargeBatteries();
 			}
 			//Select GameObject and Change Selected rover
 			if (SwinGame.MouseClicked(MouseButton.LeftButton))
@@ -132,6 +132,7 @@ namespace RoverGameV2
 		}
 		public void Handlecollisions()
 		{
+
 			_colsionManager.DetectColsions(_levelList);
 		}
 		public void Render()

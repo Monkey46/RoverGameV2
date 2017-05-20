@@ -124,7 +124,11 @@ namespace RoverGameV2
         }
 		public void Drop(GameObject dropGO)
 		{
-			_selectedRover.Detach(dropGO as IAttachable);
+			if (dropGO is Specimen)
+			{
+				_selectedRover.Specimens.Remove(dropGO as Specimen);
+			}
+			else _selectedRover.Detach(dropGO as IAttachable);
 			dropGO.X = _selectedRover.X;
 			dropGO.Y = _selectedRover.Y;
 			_level.LevelGameObjects.Add(dropGO);

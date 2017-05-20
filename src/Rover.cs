@@ -38,8 +38,14 @@ namespace RoverGameV2
 			SwinGame.FillRectangle(Color.Red, X, Y, Width, Height);
 			SwinGame.DrawText("R", Color.Black, X + 1, Y + 1);
 		}
-
-		public override void Update()
+		private void Checkbonders()
+		{
+			if (X2 > _gamegrind.Width) X2 = _gamegrind.Width - 1;
+			if (X < 0) X = 1;
+			if (Y2 > _gamegrind.Height) Y2 = _gamegrind.Height - 1;
+			if (Y < 0) Y = 1;
+		}
+		private void UpdateMovement()
 		{
 			X += XVelocity;
 			Y += YVelocity;
@@ -47,6 +53,12 @@ namespace RoverGameV2
 			PreYVelocity = YVelocity;
 			XVelocity = 0;
 			YVelocity = 0;
+		}
+		public override void Update()
+		{
+			UpdateMovement();
+			Checkbonders();
+			ChargeBatteries();
 		}
 		public void UpdateRenderList()
 		{
@@ -149,7 +161,7 @@ namespace RoverGameV2
 			}
 			return false;
 		}
-		public bool Charge()
+		public bool ChargeBatteries()
 		{
 			if (_devices.Exists(x => x is SolarPanel))
 			{
