@@ -31,8 +31,6 @@ namespace RoverGameV2
 
 			_level.LevelGameObjects.AddRange(MakeSpecimans());
 			RandomizeLaction(_level.LevelGameObjects);
-
-
 		}
 		public void Loop()
 		{
@@ -57,9 +55,11 @@ namespace RoverGameV2
 			Motor motor3 = new Motor("Basic Motor", 10, 5, 2, _grid);
 			Battery bat1 = new Battery("Big Battery", 10, 5, 500);
 			SolarPanel sp1 = new SolarPanel("SolarPanel", 10, 5, 1, _grid);
+			SolarPanel sp2 = new SolarPanel("Super SolarPanel", 10, 5, 3, _grid);
 			Drill drill1 = new Drill("Drill", 10, 5, 10, _grid);
 			Radar radar1 = new Radar("Radar", 10, 8, typeof(Specimen), 5, _grid);
 			Camera camera1 = new Camera("Camera", 10, 8, 2, _grid);
+			rover.Attach(sp2);
 			rover.Attach(bat1);
 			rover.Attach(motor1);
 			rover.Attach(motor3);

@@ -25,7 +25,7 @@ namespace RoverGameV2
 			_levelList = new List<GameObject>();
 			_scanedGameObjects = new List<Tuple<Point2D, int>>();
 			_gameTick = 0;
-			_scanDuration = 300;
+			_scanDuration = 120;
 			_renderList = new List<GameObject>();
 
 		}
@@ -97,7 +97,7 @@ namespace RoverGameV2
 			{
 				_gamegrid.SelectedRover.Scan();
 			}
-			// Drop and Pick up (need gui)
+			// Pick up
 			if (SwinGame.MouseClicked(MouseButton.RightButton))
 			{
 				foreach (GameObject iGO in _levelList)
@@ -119,7 +119,6 @@ namespace RoverGameV2
 					}
 				}
 			}
-			// Connecting and Discounting Devices to Batteries 
 		}
 		public void Update()
 		{
@@ -143,9 +142,12 @@ namespace RoverGameV2
 			{
 				rover.Render();
 			}
-			foreach (GameObject iGO in _renderList)
+			if (_renderList != null)
 			{
-				iGO.Render();
+				foreach (GameObject iGO in _renderList)
+				{
+					iGO.Render();
+				}
 			}
 			RenderScan();
 		}
@@ -184,7 +186,6 @@ namespace RoverGameV2
 			}
 
 		}
-		// @Paul How is this Seprate from HandleCollsions?
 		private void UpdateColsionList()
 		{
 

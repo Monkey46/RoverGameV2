@@ -20,10 +20,11 @@ namespace RoverGameV2
         }
         public override bool Operate()
         {
-            if (!CheckCanOperate(0))
+            if (!CheckCanOperate(-1))
             {
-                return false;
-            }
+				GameGrid.Level.RenderList = null;
+				return false;
+			}
 
             Circle ViewArea = new Circle();
             ViewArea.Center = (Owner as Rover).Center;

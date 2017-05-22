@@ -11,13 +11,19 @@ namespace RoverGameV2
 
 	{
 		private int _powerlvl;
-		public Battery(string name, float width, float height, int initalPowerlvl) : base(name, width, height)
+		private int _MaxLVl;
+		public Battery(string name, float width, float height, int MaxPowerlvl) : base(name, width, height)
 		{
-			_powerlvl = initalPowerlvl;
+			_MaxLVl = MaxPowerlvl;
+			_powerlvl = MaxPowerlvl / 2;
 		}
 		public int Power
 		{
 			get { return _powerlvl; }
+		}
+		public int MaxPowerLevel
+		{
+			get { return _MaxLVl; }
 		}
 		public bool ChangePower(int powerchange)
 		{
@@ -31,13 +37,13 @@ namespace RoverGameV2
 
 		public override string Details()
 		{
-			return "Power Level: " + _powerlvl.ToString();
+			return "Power Level: " + _powerlvl.ToString() + "/" + _MaxLVl.ToString(); ;
 		}
 		public override List<string> AllDetails()
 		{
 			List<string> allDetails = new List<string>();
 			allDetails.Add(Name);
-			allDetails.Add("Current Power Level: " + Power);
+			allDetails.Add("Current Power Level: " + Power + "/" + MaxPowerLevel);
 			allDetails.Add("Decsription: Blah Blah Balh");
 			return allDetails;
 		}

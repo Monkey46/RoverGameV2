@@ -58,7 +58,7 @@ namespace RoverGameV2
 		{
 			UpdateMovement();
 			Checkbonders();
-			ChargeBatteries();
+			//ChargeBatteries();
 		}
 		public void UpdateRenderList()
 		{
