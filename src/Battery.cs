@@ -32,6 +32,10 @@ namespace RoverGameV2
 				return false;
 			}
 			_powerlvl = _powerlvl + powerchange;
+			if (_powerlvl > _MaxLVl)
+			{
+				_powerlvl = _MaxLVl;
+			}
 			return true;
 		}
 
