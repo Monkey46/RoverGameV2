@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="RoverGameV2.Cell" Collapsed="true">
+    <Position X="24.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>src\Cell.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RoverGameV2.ColorExtension" Collapsed="true">
+    <Position X="26.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>src\ColorExtension.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RoverGameV2.ColsionProsser">
+    <Position X="22.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACEAQAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>src\ColsionManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RoverGameV2.Factory" Collapsed="true">
+    <Position X="24.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>src\Factory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RoverGameV2.GameGrid" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="26.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AJAAAAAABACRABABAAIAAWAAAFAAAAABAAAAAAAQAGA=</HashCode>
+      <FileName>src\GameGrid.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="RoverGameV2.GameMain">
+    <Position X="20" Y="1.25" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>src\GameMain.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RoverGameV2.GameManager">
+    <Position X="18.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAIAAAAAgAAAIAAAQAAAAAAAAAAAAAAoAAAAAA=</HashCode>
+      <FileName>src\GameManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RoverGameV2.Battery">
+    <Position X="0.5" Y="2.25" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAADAABAAAAAAAAAAAAAAAABAhABAAAIAAA=</HashCode>
+      <FileName>src\GameObjects\Battery.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RoverGameV2.Camera">
+    <Position X="10.75" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAABAAAAEAAAAAAAAAAAAAAAABAAgAAIAAA=</HashCode>
+      <FileName>src\GameObjects\Camera.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RoverGameV2.Device">
+    <Position X="9" Y="2.25" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AAACgACAAAAAAAACAgIAAIAAAAAAEAAAAAAAgAAABAA=</HashCode>
+      <FileName>src\GameObjects\Device.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RoverGameV2.Drill">
+    <Position X="15.25" Y="10.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AEQAAAAAEAABAAAAAAAAAIAAAAAAAAAAABAAgAAIAAA=</HashCode>
+      <FileName>src\GameObjects\Drill.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RoverGameV2.GameObject" Collapsed="true">
+    <Position X="9.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACQAIAAIZASBAAAhHAADBEQAAJABAAAABBBAACAIYAA=</HashCode>
+      <FileName>src\GameObjects\GameObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RoverGameV2.Motor">
+    <Position X="0.5" Y="10.25" Width="5.25" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAABAAAAACAAAAAAAAAAAAAACBAIgAAIAAA=</HashCode>
+      <FileName>src\GameObjects\Motor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RoverGameV2.Radar">
+    <Position X="6.5" Y="10.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAABAAQAEAAAAAAAAAAAAAAAARAAgAAIAAA=</HashCode>
+      <FileName>src\GameObjects\Radar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RoverGameV2.Rover">
+    <Position X="5" Y="2.25" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAQCAIAAAIABAiNCAABAQAAEQoAAQAAAAJAQAAAIAAA=</HashCode>
+      <FileName>src\GameObjects\Rover.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RoverGameV2.SolarPanel">
+    <Position X="13" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAABAAAAgAAAAAAAAAAAAAAAABAAgAAIAAA=</HashCode>
+      <FileName>src\GameObjects\SolarPanel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RoverGameV2.Specimen">
+    <Position X="13.75" Y="2.25" Width="4.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACABgCAAQAAAAAAAAgAAAAAAABCAgAIIAAA=</HashCode>
+      <FileName>src\GameObjects\Specimen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RoverGameV2.GUI">
+    <Position X="31" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQQAACIAAyJAQAAgAgAACAEARAAAAAAABAACAAAAAA=</HashCode>
+      <FileName>src\GUI\GUI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RoverGameV2.GUIElementBattery" Collapsed="true">
+    <Position X="20" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>src\GUI\GUIElementBattery.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RoverGameV2.GUIElementConnect" Collapsed="true">
+    <Position X="22.25" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>src\GUI\GUIElementConnect.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RoverGameV2.GUIElementDrop" Collapsed="true">
+    <Position X="24.5" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>src\GUI\GUIElementDrop.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RoverGameV2.GUIPanel" Collapsed="true">
+    <Position X="29" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAABAAACAAAAAAAABAAAAIAAAA=</HashCode>
+      <FileName>src\GUI\GUIPanel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RoverGameV2.GUIPart" Collapsed="true">
+    <Position X="23.25" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>MAAAAAAABAAAAAAAAAAAAEAAAAAAAAAAABAAAAAAYAA=</HashCode>
+      <FileName>src\GUI\GUIPart.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RoverGameV2.GUIPopUp" Collapsed="true">
+    <Position X="18.25" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAIAAAAAAgQBAAAAAAAAAAAABAAAAAEAAA=</HashCode>
+      <FileName>src\GUI\GUIPopUp.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RoverGameV2.GUIPopUpElement" Collapsed="true">
+    <Position X="22.25" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACIAAAAAAAAAAQAAgABAAAAAAAAAAAABAAAAAEAAQ=</HashCode>
+      <FileName>src\GUI\GUIPopUpElement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RoverGameV2.GUITextBox" Collapsed="true">
+    <Position X="26.75" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAASAAAAAAAAAAAAAAJAAAAAAABAAAAAEAAA=</HashCode>
+      <FileName>src\GUI\GUITextBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RoverGameV2.Level" Collapsed="true">
+    <Position X="28.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AhQAAAACAACQAAAgAAggECAABACAQBAAADAQQAQBAgA=</HashCode>
+      <FileName>src\Level.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="RoverGameV2.IAttachable" Collapsed="true">
+    <Position X="24.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>src\IAttachable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="RoverGameV2.IIsOwener" Collapsed="true">
+    <Position X="26.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>src\IIsOwener.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="RoverGameV2.Direction" Collapsed="true">
+    <Position X="24.75" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAACAAAAAAAAAAAAAAAIAAAAAAAAAgAAgAA=</HashCode>
+      <FileName>src\Direction.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

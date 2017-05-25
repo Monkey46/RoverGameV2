@@ -12,6 +12,7 @@ namespace RoverGameV2
 	{
 		private int _powerlvl;
 		private int _MaxLVl;
+
 		public Battery(string name, float width, float height, int MaxPowerlvl) : base(name, width, height)
 		{
 			_MaxLVl = MaxPowerlvl;

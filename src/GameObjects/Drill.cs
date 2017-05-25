@@ -9,8 +9,8 @@ namespace RoverGameV2
 {
 	public class Drill : Device
 	{
-		int _worn;
-		float _drillsize;
+		private int _worn;
+		private float _drillsize;
 		public Drill(string name, float drillsize, GameGrid gamegrind) : base(name, gamegrind)
 		{
 			_worn = 0;
@@ -38,13 +38,15 @@ namespace RoverGameV2
 					return false;
 				}
 			}
+
 			Circle drillArea = new Circle();
 			drillArea.Center = (Owner as Rover).Center;
 			drillArea.Radius = _drillsize;
+
 			List<Specimen> drilledGOs = GameGrid.GetDrilledSpecimen(drillArea);
 			if (drilledGOs.Count == 0)
 			{
-				Console.WriteLine(Name + " drilled nothing");
+				_worn += 10;
 				return false;
 			}
 			foreach (GameObject singleDrilledGO in drilledGOs)
@@ -52,7 +54,7 @@ namespace RoverGameV2
 				(Owner as Rover).Collect(singleDrilledGO as Specimen);
 				GameGrid.Level.LevelGameObjects.Remove(singleDrilledGO);
 			}
-
+			_worn += 5;
 			return true;
 		}
 		public override string Details()

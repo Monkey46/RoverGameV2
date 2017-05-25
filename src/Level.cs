@@ -131,24 +131,21 @@ namespace RoverGameV2
 		}
 		public void Handlecollisions()
 		{
-
 			_colsionManager.DetectColsions(_levelList);
 		}
 		public void Render()
 		{
 			_gamegrid.Reder();
-			_selectedGO.RederOutline();
-			foreach (Rover rover in _levelList.FindAll(x => x is Rover))
+			if (_levelList.Contains(_selectedGO))
 			{
-				rover.Render();
+				_selectedGO.RederOutline();
 			}
-			if (_renderList != null)
+			else
 			{
-				foreach (GameObject iGO in _renderList)
-				{
-					iGO.Render();
-				}
+				_gamegrid.SelectedRover.RederOutline();
 			}
+			RenderRenderList();
+			RenderRovers();
 			RenderScan();
 		}
 		public void Pickup(GameObject moveGO)
@@ -186,11 +183,37 @@ namespace RoverGameV2
 			}
 
 		}
+		public void ClearRenderList()
+		{
+			if (RenderList != null)
+			{
+				RenderList.Clear();
+			}
+		}
+
 		private void UpdateColsionList()
 		{
 
 			// @Task Build Later if need better Colsions handler 
 
+		}
+
+		private void RenderRenderList()
+		{
+			if (_renderList != null)
+			{
+				foreach (GameObject iGO in _renderList)
+				{
+					iGO.Render();
+				}
+			}
+		}
+		private void RenderRovers()
+		{
+			foreach (Rover rover in _levelList.FindAll(x => x is Rover))
+			{
+				rover.Render();
+			}
 		}
 	}
 }

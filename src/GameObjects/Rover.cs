@@ -58,7 +58,7 @@ namespace RoverGameV2
 		{
 			UpdateMovement();
 			Checkbonders();
-			//ChargeBatteries();
+			ChargeBatteries();
 		}
 		public void UpdateRenderList()
 		{
@@ -134,7 +134,7 @@ namespace RoverGameV2
 						dev.ConnectedBattery = null;
 					}
 				}
-				_gamegrind.Level.RenderList.Clear();
+				_gamegrind.Level.ClearRenderList();
 			}
 			else
 			{

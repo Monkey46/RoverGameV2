@@ -9,10 +9,10 @@ namespace RoverGameV2
 {
     public class GameGrid : IIsOwener
     {
-        Cell[][] _cells;
-        int _width, _height;
-        Rover _selectedRover;
-        float _cellSize;
+        private Cell[][] _cells;
+        private int _width, _height;
+        private Rover _selectedRover;
+        private float _cellSize;
         private Level _level;
 
         public GameGrid(int width, int height, float cellSize)
@@ -20,19 +20,19 @@ namespace RoverGameV2
             _width = width;
             _height = height;
             _cellSize = cellSize;
-            _cells = new Cell[width][];
-            for (int x = 0; x < height; x++)
-            {
-                _cells[x] = new Cell[height];
-            }
-
-            for (int i = 0; i < width; i++)
-            {
-                for (int j = 0; j < height; j++)
-                {
-                    _cells[i][j] = new Cell();
-                }
-            }
+            // _cells = new Cell[width][];
+            // for (int x = 0; x < height; x++)
+            // {
+            //     _cells[x] = new Cell[height];
+            // }
+			// 
+            // for (int i = 0; i < width; i++)
+            // {
+            //     for (int j = 0; j < height; j++)
+            //     {
+            //         _cells[i][j] = new Cell();
+            //     }
+            // }
         }
         public Cell[][] Cells
         {
@@ -69,51 +69,7 @@ namespace RoverGameV2
             get { return _level; }
             set { _level = value; }
         }
-
-        public int GetCellX(Cell getCell)
-        {
-            for (int i = 0; i < _width; i++)
-            {
-                for (int j = 0; j < _height; j++)
-                {
-                    if (getCell == _cells[i][j])
-                    {
-                        return i;
-                    }
-                }
-
-            }
-            return -1;
-        }
-        public int GetCellY(Cell getCell)
-        {
-            for (int i = 0; i < _width; i++)
-            {
-                for (int j = 0; j < _height; j++)
-                {
-                    if (getCell == _cells[i][j])
-                    {
-                        return j;
-                    }
-                }
-
-            }
-            return -1;
-        }
-        public Cell FindGameObjectLocation(GameObject findGO)
-        {
-            foreach (Cell[] cellA in _cells)
-            {
-                foreach (Cell singleCell in cellA)
-                {
-                    if (singleCell.Contents.Contains(findGO))
-                    {
-                        return singleCell;
-                    }
-                }
-            }
-            return null;
-        }
+		// @Task Should I clean this up??
         public List<GameObject> GetScannedGameObjects(Circle scanArea)
         {
              return _level.Colsions.ScanColsions(scanArea, _level.LevelGameObjects);
@@ -152,31 +108,5 @@ namespace RoverGameV2
                 SwinGame.DrawLine(Color.Black, 0, yline, NumberOfXCells * CellSize, yline);
             }
         }
-        /* Redunt Code from console based game
-        public string FindCoordinatesOfGO(GameObject item)
-        {
-            Cell temp = FindGameObjectLocation(item);
-            return "["+GetCellX(temp).ToString() +"]["+ GetCellY(temp).ToString()+"]";
-        }
-
-        
-        public GameObject FindGameObject(string text)
-        {
-            foreach (Cell[] cellA in _cells)
-            {
-                foreach (Cell singleCell in cellA)
-                {
-                     foreach(GameObject go in singleCell.Contents)
-                    {
-                        if (go.AreYou(text))
-                        {
-                            return go;
-                        }
-                    }
-                }
-            }
-            return null;
-        }
-        */
     }
 }

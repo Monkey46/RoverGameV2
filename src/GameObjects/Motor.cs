@@ -33,13 +33,7 @@ namespace RoverGameV2
             {
                 return false;
             }
-            //move rover
-            /*
-            Cell currentLaction = GameGrid.FindGameObjectLocation(Owner as GameObject);
-            Cell[][] GameCells = GameGrid.Cells;
-            int currX = GameGrid.GetCellX(currentLaction);
-            int currY = GameGrid.GetCellY(currentLaction);
-            */
+
             switch (_direction)
             {
                 case Direction.up:

@@ -40,17 +40,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="src\Factory.cs" />
-    <Compile Include="src\Camera.cs" />
+    <Compile Include="src\GameObjects\Camera.cs" />
     <Compile Include="src\ColorExtension.cs" />
     <Compile Include="src\GameManager.cs" />
-    <Compile Include="src\Battery.cs" />
+    <Compile Include="src\GameObjects\Battery.cs" />
     <Compile Include="src\Cell.cs" />
     <Compile Include="src\ColsionManager.cs" />
-    <Compile Include="src\Device.cs" />
+    <Compile Include="src\GameObjects\Device.cs" />
     <Compile Include="src\Direction.cs" />
-    <Compile Include="src\Drill.cs" />
+    <Compile Include="src\GameObjects\Drill.cs" />
     <Compile Include="src\GameMain.cs" />
-    <Compile Include="src\GameObject.cs" />
+    <Compile Include="src\GameObjects\GameObject.cs" />
     <Compile Include="src\GUI\GUI.cs" />
     <Compile Include="src\GUI\GUIElementBattery.cs" />
     <Compile Include="src\GUI\GUIElementConnect.cs" />
@@ -63,13 +63,12 @@
     <Compile Include="src\IIsOwener.cs" />
     <Compile Include="src\Level.cs" />
     <Compile Include="src\GameGrid.cs" />
-    <Compile Include="src\Motor.cs" />
+    <Compile Include="src\GameObjects\Motor.cs" />
     <Compile Include="src\GUI\GUIPanel.cs" />
-    <Compile Include="src\Radar.cs" />
-    <Compile Include="src\Rover.cs" />
-    <Compile Include="src\SolarPanel.cs" />
-    <Compile Include="src\Specimen.cs" />
-    <Compile Include="src\Wall.cs" />
+    <Compile Include="src\GameObjects\Radar.cs" />
+    <Compile Include="src\GameObjects\Rover.cs" />
+    <Compile Include="src\GameObjects\SolarPanel.cs" />
+    <Compile Include="src\GameObjects\Specimen.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="SwinGame">
@@ -78,6 +77,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Resources\**\*.*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
