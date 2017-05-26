@@ -31,28 +31,28 @@ namespace RoverGameV2
 			rover.Attach(camera1);
 			return rover;
 		}
-		public List<GameObject> MakeSpecimans()
+		public List<GameObject> MakeSpecimans(GameGrid grid)
 		{
 			List<GameObject> specimans = new List<GameObject>();
-			Specimen spec = new Specimen("Jacques", 5, 5, 3, Color.Purple);
+			Specimen spec = new Specimen("Jacques", 5, 5, 3, Color.Purple,grid);
 			specimans.Add(spec);
-			Specimen spec2 = new Specimen("Noonium", 10, 10, 1, Color.OliveDrab);
+			Specimen spec2 = new Specimen("Noonium", 10, 10, 1, Color.OliveDrab, grid);
 			specimans.Add(spec2);
-			Specimen spec3 = new Specimen("Tienium", 10, 10, 20017, Color.Red);
+			Specimen spec3 = new Specimen("Tienium", 10, 10, 20017, Color.Red, grid);
 			specimans.Add(spec3);
-			Specimen spec4 = new Specimen("Maddite", 5, 5, 1, Color.HotPink);
+			Specimen spec4 = new Specimen("Maddite", 5, 5, 1, Color.HotPink, grid);
 			specimans.Add(spec4);
-			Specimen spec5 = new Specimen("Andinium", 5, 5, 5, Color.IndianRed);
+			Specimen spec5 = new Specimen("Andinium", 5, 5, 5, Color.IndianRed, grid);
 			specimans.Add(spec5);
-			Specimen spec6 = new Specimen("Cool Beanium", 5, 5, 1, Color.LimeGreen);
+			Specimen spec6 = new Specimen("Cool Beanium", 5, 5, 1, Color.LimeGreen, grid);
 			specimans.Add(spec6);
-			Specimen spec7 = new Specimen("Paul's Remains", 5, 5, 1, Color.MintCream);
+			Specimen spec7 = new Specimen("Paul's Remains", 5, 5, 1, Color.MintCream, grid);
 			specimans.Add(spec7);
-			Specimen spec8 = new Specimen("Meth", 5, 5, 1, Color.PaleTurquoise);
+			Specimen spec8 = new Specimen("Meth", 5, 5, 1, Color.PaleTurquoise, grid);
 			specimans.Add(spec8);
-			Specimen spec9 = new Specimen("Red Mist", 5, 5, 1, Color.Peru);
+			Specimen spec9 = new Specimen("Red Mist", 5, 5, 1, Color.Peru, grid);
 			specimans.Add(spec9);
-			Specimen spec10 = new Specimen("¿", 5, 5, 3242452, Color.Yellow);
+			Specimen spec10 = new Specimen("¿", 5, 5, 3242452, Color.Yellow, grid);
 			specimans.Add(spec10);
 			return specimans;
 		}

@@ -32,7 +32,7 @@ namespace RoverGameV2
 			_level.LevelGameObjects.Add(rover1);
 			_level.LevelGameObjects.Add(rover2);
 
-			_level.LevelGameObjects.AddRange(_factory.MakeSpecimans());
+			_level.LevelGameObjects.AddRange(_factory.MakeSpecimans(_grid));
 
 			RandomizeLaction(_level.LevelGameObjects);
 		}
@@ -45,8 +45,8 @@ namespace RoverGameV2
 			_level.Handlecollisions();
 			_level.Update();
 			_gui.Update();
-			_gui.Render();
 			_level.Render();
+			_gui.Render();
 			SwinGame.DrawFramerate(0, 0);
 			SwinGame.RefreshScreen(60);
 		}

@@ -22,6 +22,7 @@ namespace RoverGameV2
 			_name = name;
 			_width = width;
 			_height = height;
+
 		}
 		public string Name
 		{
@@ -112,7 +113,6 @@ namespace RoverGameV2
 		{
 			SwinGame.DrawRectangle(Color.Black, X - 1, Y - 1, Width + 2, Height + 2);
 		}
-		public abstract void Update();
 		public abstract void Render();
 		public abstract List<string> AllDetails();
 		public abstract string Details();
@@ -130,6 +130,19 @@ namespace RoverGameV2
 				_yVelocity = -(2 * _preYVelocity);
 			}
 
+		}
+		public virtual void Update()
+		{
+			UpdateMovement();
+		}
+		private void UpdateMovement()
+		{
+			X += XVelocity;
+			Y += YVelocity;
+			PreXVelocity = XVelocity;
+			PreYVelocity = YVelocity;
+			XVelocity = 0;
+			YVelocity = 0;
 		}
 	}
 }

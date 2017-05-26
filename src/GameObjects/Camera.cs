@@ -10,10 +10,6 @@ namespace RoverGameV2
 	public class Camera : Device
 	{
 		private float _range;
-		public Camera(string name, float range, GameGrid gamegrid) : base(name, gamegrid)
-		{
-			_range = range;
-		}
 		public Camera(string name, float width, float height, float range, GameGrid gamegrid) : base(name, width, height, gamegrid)
 		{
 			_range = range;

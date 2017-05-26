@@ -17,6 +17,7 @@ namespace RoverGameV2
 		private List<Tuple<Point2D, int>> _scanedGameObjects;
 		private int _gameTick;
 		private int _scanDuration;
+		private Random _randomer;
 
 		public Level(GameGrid gamegrid)
 		{
@@ -27,6 +28,7 @@ namespace RoverGameV2
 			_gameTick = 0;
 			_scanDuration = 120;
 			_renderList = new List<GameObject>();
+			_randomer = new Random();
 
 		}
 		public List<GameObject> LevelGameObjects
@@ -47,6 +49,10 @@ namespace RoverGameV2
 		public ColsionProsser Colsions
 		{
 			get { return _colsionManager; }
+		}
+		public Random Randomer
+		{
+			get { return _randomer; }
 		}
 		public void InputHandler()
 		{
@@ -112,7 +118,10 @@ namespace RoverGameV2
 							nearSelectedRover.Radius = _gamegrid.CellSize;
 							if (SwinGame.CircleRectCollision(nearSelectedRover, iGO.HitBox))
 							{
-								_gamegrid.Pickup(iGO);
+								if (iGO is IAttachable)
+								{
+									_gamegrid.Pickup(iGO);
+								}
 								return;
 							}
 						}

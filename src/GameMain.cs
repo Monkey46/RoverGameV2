@@ -13,6 +13,7 @@ namespace RoverGameV2
             {
                 _gameManager.Loop();
             }
+			SwinGame.ReleaseAllBitmaps();
         }
     }
 }

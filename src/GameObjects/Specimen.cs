@@ -13,13 +13,15 @@ namespace RoverGameV2
 		private float _change;
 		private int _count;
 		private int _countMax;
-		public Specimen(string name, float width, float height, float size, Color color) : base(name, width, height)
+		GameGrid _gamegrid;
+		public Specimen(string name, float width, float height, float size, Color color, GameGrid gamegrid) : base(name, width, height)
 		{
 			_size = size;
 			_change = 1;
 			_count = 0;
 			_countMax = 0;
 			Color = color;
+			_gamegrid = gamegrid;
 		}
 		public float Size
 		{
@@ -65,6 +67,9 @@ namespace RoverGameV2
 
 		public override void Update()
 		{
+			base.Update();
+			RandomMovment();
+			_gamegrid.Checkbonders(this);
 			if (_count == _countMax)
 			{
 				Alternate();
@@ -88,6 +93,12 @@ namespace RoverGameV2
 			float max = Width + Height;
 			float min = 2;
 			Alternate(max, min);
+		}
+		private void RandomMovment()
+		{
+			Random rand = _gamegrid.Level.Randomer;
+			XVelocity = rand.Next(-1, 2);
+			YVelocity = rand.Next(-1, 2);
 		}
 	}
 }

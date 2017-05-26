@@ -12,13 +12,13 @@ namespace RoverGameV2
 		private List<Battery> _batteries;
 		private List<Device> _devices;
 		private List<Specimen> _specimens;
-		private GameGrid _gamegrind;
+		private GameGrid _gamegrid;
 		public Rover(string name, float width, float height, GameGrid gamegrind) : base(name, width, height)
 		{
 			_batteries = new List<Battery>();
 			_devices = new List<Device>();
 			_specimens = new List<Specimen>();
-			_gamegrind = gamegrind;
+			_gamegrid = gamegrind;
 		}
 
 		public List<Battery> Batteries
@@ -38,26 +38,11 @@ namespace RoverGameV2
 			SwinGame.FillRectangle(Color.Red, X, Y, Width, Height);
 			SwinGame.DrawText("R", Color.Black, X + 1, Y + 1);
 		}
-		private void Checkbonders()
-		{
-			if (X2 > _gamegrind.Width) X2 = _gamegrind.Width - 1;
-			if (X < 0) X = 1;
-			if (Y2 > _gamegrind.Height) Y2 = _gamegrind.Height - 1;
-			if (Y < 0) Y = 1;
-		}
-		private void UpdateMovement()
-		{
-			X += XVelocity;
-			Y += YVelocity;
-			PreXVelocity = XVelocity;
-			PreYVelocity = YVelocity;
-			XVelocity = 0;
-			YVelocity = 0;
-		}
+
 		public override void Update()
 		{
-			UpdateMovement();
-			Checkbonders();
+			base.Update();
+			_gamegrid.Checkbonders(this);
 			ChargeBatteries();
 		}
 		public void UpdateRenderList()
@@ -134,12 +119,12 @@ namespace RoverGameV2
 						dev.ConnectedBattery = null;
 					}
 				}
-				_gamegrind.Level.ClearRenderList();
+				_gamegrid.Level.ClearRenderList();
 			}
 			else
 			{
 				_devices.RemoveAll(x => x == attachItem);
-				(attachItem as Device).Owner = _gamegrind;
+				(attachItem as Device).Owner = _gamegrid;
 			}
 		}
 		public void Collect(Specimen newSpecimen)

@@ -11,11 +11,9 @@ namespace RoverGameV2
 	{
 		private Type _type;
 		private int _range;
-		public Radar(string name, Type type, int range, GameGrid gamegrind) : base(name, gamegrind)
+		public Radar(string name, Type type, int range, GameGrid gamegrind) : this(name, 6, 4, type, range, gamegrind)
 		{
-			_type = type;
-			_range = range;
-			// @Task Is there a way here to not duplicate code
+
 		}
 		public Radar(string name, float width, float height, Type type, int range, GameGrid gamegrind) : base(name, width, height, gamegrind)
 		{

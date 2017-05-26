@@ -11,9 +11,6 @@ namespace RoverGameV2
 		private Battery _connectedbattery;
 		private GameGrid _gamegrind;
 		private IIsOwener _owner;
-		public Device(string name, GameGrid gamegrid) : this(name, 8, 5, gamegrid)
-		{
-		}
 		public Device(string name, float width, float height, GameGrid gamegrind) : base(name, width, height)
 		{
 			_gamegrind = gamegrind;

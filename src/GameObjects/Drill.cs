@@ -11,10 +11,8 @@ namespace RoverGameV2
 	{
 		private int _worn;
 		private float _drillsize;
-		public Drill(string name, float drillsize, GameGrid gamegrind) : base(name, gamegrind)
+		public Drill(string name, float drillsize, GameGrid gamegrind) : this(name, 6, 5, drillsize, gamegrind)
 		{
-			_worn = 0;
-			_drillsize = drillsize;
 		}
 		public Drill(string name, float width, float height, float drillsize, GameGrid gamegrind) : base(name, width, height, gamegrind)
 		{

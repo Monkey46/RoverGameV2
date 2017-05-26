@@ -10,9 +10,8 @@ namespace RoverGameV2
 	public class SolarPanel : Device
 	{
 		int _chargeRate;
-		public SolarPanel(string name, int chargeRate, GameGrid gamegrind) : base(name, gamegrind)
+		public SolarPanel(string name, int chargeRate, GameGrid gamegrind) : this(name, 8, 3, chargeRate, gamegrind)
 		{
-			_chargeRate = chargeRate;
 		}
 		public SolarPanel(string name, float width, float height, int chargeRate, GameGrid gamegrind) : base(name, width, height, gamegrind)
 		{
