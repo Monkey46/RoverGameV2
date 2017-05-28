@@ -145,14 +145,6 @@ namespace RoverGameV2
 		public void Render()
 		{
 			_gamegrid.Reder();
-			if (_levelList.Contains(_selectedGO))
-			{
-				_selectedGO.RederOutline();
-			}
-			else
-			{
-				_gamegrid.SelectedRover.RederOutline();
-			}
 			RenderRenderList();
 			RenderRovers();
 			RenderScan();
@@ -214,6 +206,14 @@ namespace RoverGameV2
 				foreach (GameObject iGO in _renderList)
 				{
 					iGO.Render();
+				}
+				if (_renderList.Contains(_selectedGO))
+				{
+					_selectedGO.RederOutline();
+				}
+				else
+				{
+					_gamegrid.SelectedRover.RederOutline();
 				}
 			}
 		}

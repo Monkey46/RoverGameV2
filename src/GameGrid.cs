@@ -22,19 +22,19 @@ namespace RoverGameV2
 			_yNumberOfCells = yNumberOfCells;
 			_cellSize = cellSize;
 			background = new Bitmap("outflow2.bmp");
-			// _cells = new Cell[width][];
-			// for (int x = 0; x < height; x++)
-			// {
-			//     _cells[x] = new Cell[height];
-			// }
-			// 
-			// for (int i = 0; i < width; i++)
-			// {
-			//     for (int j = 0; j < height; j++)
-			//     {
-			//         _cells[i][j] = new Cell();
-			//     }
-			// }
+			_cells = new Cell[xNumberOfCells][];
+			for (int x = 0; x < yNumberOfCells; x++)
+			{
+			    _cells[x] = new Cell[yNumberOfCells];
+			}
+			
+			for (int i = 0; i < xNumberOfCells; i++)
+			{
+			    for (int j = 0; j < yNumberOfCells; j++)
+			    {
+			        _cells[i][j] = new Cell();
+			    }
+			 }
 		}
 		public Cell[][] Cells
 		{
@@ -71,6 +71,7 @@ namespace RoverGameV2
 			get { return _level; }
 			set { _level = value; }
 		}
+
 		// @Task Should I clean this up??
 		public List<GameObject> GetScannedGameObjects(Circle scanArea)
 		{

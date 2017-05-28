@@ -34,6 +34,7 @@ namespace RoverGameV2
 		{
 			get { return _gamegrind; }
 		}
+
 		public bool CheckBattery()
 		{
 			if (ConnectedBattery == null)

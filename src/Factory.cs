@@ -18,9 +18,10 @@ namespace RoverGameV2
 			Battery bat1 = new Battery("Big Battery", 10, 5, 500);
 			SolarPanel sp1 = new SolarPanel("SolarPanel", 10, 5, 1, grid);
 			SolarPanel sp2 = new SolarPanel("Super SolarPanel", 10, 5, 3, grid);
-			Drill drill1 = new Drill("Drill", 10, 5, 10, grid);
+			Drill drill1 = new Drill("Drill", 10, 5, 15, grid);
 			Radar radar1 = new Radar("Radar", 10, 8, typeof(Specimen), 5, grid);
 			Camera camera1 = new Camera("Camera", 10, 8, 2, grid);
+			Battery smallBat = new Battery("AA", 10, 5, 50);
 			rover.Attach(sp2);
 			rover.Attach(bat1);
 			rover.Attach(motor1);
@@ -29,6 +30,7 @@ namespace RoverGameV2
 			rover.Attach(drill1);
 			rover.Attach(radar1);
 			rover.Attach(camera1);
+			rover.Attach(smallBat);
 			return rover;
 		}
 		public List<GameObject> MakeSpecimans(GameGrid grid)

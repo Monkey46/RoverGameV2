@@ -24,6 +24,7 @@ namespace RoverGameV2
 		{
 			get { return _gameObject as GameObject; }
 		}
+
 		public bool IsAt(Point2D _point)
 		{
 			return SwinGame.PointInRect(_point, X, Y, Width, Height);

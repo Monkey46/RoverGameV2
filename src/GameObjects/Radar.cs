@@ -65,9 +65,5 @@ namespace RoverGameV2
 		{
 			SwinGame.FillRectangle(Color.DeepPink, X, Y, Width, Height);
 		}
-
-		public override void Update()
-		{
-		}
 	}
 }

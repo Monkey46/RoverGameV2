@@ -50,8 +50,7 @@ namespace RoverGameV2
 			SwinGame.DrawFramerate(0, 0);
 			SwinGame.RefreshScreen(60);
 		}
-
-
+		
 		private void RandomizeLaction(List<GameObject> GameObjects)
 		{
 			Random rand = new Random();

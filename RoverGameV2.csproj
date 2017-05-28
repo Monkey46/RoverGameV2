@@ -45,7 +45,7 @@
     <Compile Include="src\GameManager.cs" />
     <Compile Include="src\GameObjects\Battery.cs" />
     <Compile Include="src\Cell.cs" />
-    <Compile Include="src\ColsionManager.cs" />
+    <Compile Include="src\CollsionProcessor.cs" />
     <Compile Include="src\GameObjects\Device.cs" />
     <Compile Include="src\Direction.cs" />
     <Compile Include="src\GameObjects\Drill.cs" />
@@ -55,6 +55,7 @@
     <Compile Include="src\GUI\GUIElementBattery.cs" />
     <Compile Include="src\GUI\GUIElementConnect.cs" />
     <Compile Include="src\GUI\GUIElementDrop.cs" />
+    <Compile Include="src\GUI\GUIElementRepair.cs" />
     <Compile Include="src\GUI\GUIPart.cs" />
     <Compile Include="src\GUI\GUIPopUp.cs" />
     <Compile Include="src\GUI\GUIPopUpElement.cs" />

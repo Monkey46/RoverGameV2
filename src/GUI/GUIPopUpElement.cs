@@ -32,6 +32,7 @@ namespace RoverGameV2
 		{
 			get { return _gameObj; }
 		}
+
 		public override void Render()
 		{
 			SwinGame.FillRectangle(Color.AliceBlue,X+XPadding, Y+YPadding,Width-XPadding, Height);

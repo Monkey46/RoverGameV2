@@ -48,6 +48,7 @@ namespace RoverGameV2
 			get;
 			set;
 		}
+
 		public override string Details()
 		{
 			return "Size: " + _size;

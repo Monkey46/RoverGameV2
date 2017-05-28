@@ -113,6 +113,11 @@ namespace RoverGameV2
 			{
 				GUIElementConnect connect = new GUIElementConnect(SwinGame.MousePosition().X, SwinGame.MousePosition().Y + 20, 96, iGUIPanel.GameObject, _gamegrid);
 				popupElements.Add(connect);
+				if (iGUIPanel.GameObject is Drill)
+				{
+					GUIElementRepair repair = new GUIElementRepair(SwinGame.MousePosition().X, SwinGame.MousePosition().Y + 40, 96, iGUIPanel.GameObject, _gamegrid);
+					popupElements.Add(repair);
+				}
 			}
 			return popupElements;
 		}

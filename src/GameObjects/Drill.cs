@@ -23,9 +23,15 @@ namespace RoverGameV2
 		public int Worn
 		{
 			get { return _worn; }
+			set { _worn = value; }
 		}
 		public override bool Operate()
 		{
+
+			if (!CheckCanOperate(-2))
+			{
+				return false;
+			}
 			if (_worn >= 100)
 			{
 				Random rand = new Random();
@@ -45,6 +51,7 @@ namespace RoverGameV2
 			if (drilledGOs.Count == 0)
 			{
 				_worn += 10;
+				WornAt100();
 				return false;
 			}
 			foreach (GameObject singleDrilledGO in drilledGOs)
@@ -53,11 +60,12 @@ namespace RoverGameV2
 				GameGrid.Level.LevelGameObjects.Remove(singleDrilledGO);
 			}
 			_worn += 5;
+			WornAt100();
 			return true;
 		}
 		public override string Details()
 		{
-			return "Drill Size: " + _drillsize.ToString() + " Worn: " + _worn.ToString();
+			return "Drill Size: " + _drillsize.ToString() + " Worn: " + _worn.ToString() + "%";
 		}
 		public override List<string> AllDetails()
 		{
@@ -73,9 +81,12 @@ namespace RoverGameV2
 		{
 			SwinGame.FillRectangle(Color.DeepPink, X, Y, Width, Height);
 		}
-
-		public override void Update()
+		private void WornAt100()
 		{
+			if (_worn > 100)
+			{
+				_worn = 100;
+			}
 		}
 	}
 }
