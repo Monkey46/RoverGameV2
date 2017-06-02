@@ -7,10 +7,21 @@ using SwinGameSDK;
 
 namespace RoverGameV2
 {
+	/// <summary>
+	/// Motor is a device that moves The Rover
+	/// </summary>
 	public class Motor : Device
 	{
+		/// <summary>
+		/// The direction in which the motor is going to move it's owner
+		/// </summary>
 		private Direction _direction;
+
+		/// <summary>
+		/// The amount the motor changes the owners velocity
+		/// </summary>
 		private float _maxSpeed;
+
 		public Motor(string name, float maxspeed, GameGrid gamegrind) : this(name, 8, 5, maxspeed, gamegrind)
 		{
 		}
@@ -24,6 +35,10 @@ namespace RoverGameV2
 			get { return _direction; }
 			set { _direction = value; }
 		}
+		/// <summary>
+		/// Depending on the direction of the motor, It's owners velocity will get changed respectively 
+		/// </summary>
+		/// <returns></returns>
 		public override bool Operate()
 		{
 			if (!CheckCanOperate(-1))

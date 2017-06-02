@@ -7,6 +7,9 @@ using SwinGameSDK;
 
 namespace RoverGameV2
 {
+	/// <summary>
+	/// The camera class this will detect objects around it and tell the game to Render those objects 
+	/// </summary>
 	public class Camera : Device
 	{
 		private float _range;
@@ -14,6 +17,10 @@ namespace RoverGameV2
 		{
 			_range = range;
 		}
+		/// <summary>
+		/// Gets a list of GameObjects from the GameGrid and then makes that the levels RenderList
+		/// </summary>
+		/// <returns></returns>
 		public override bool Operate()
 		{
 			if (!CheckCanOperate(-1))
@@ -21,7 +28,7 @@ namespace RoverGameV2
 				GameGrid.Level.RenderList = null;
 				return false;
 			}
-
+			// Make the view area of the camera
 			Circle ViewArea = new Circle();
 			ViewArea.Center = (Owner as Rover).Center;
 			ViewArea.Radius = _range * GameGrid.CellSize;

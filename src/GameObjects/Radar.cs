@@ -7,8 +7,14 @@ using SwinGameSDK;
 
 namespace RoverGameV2
 {
+	/// <summary>
+	/// Raider is a device that scans the area and then renders green dots 
+	/// </summary>
 	public class Radar : Device
 	{
+		/// <summary>
+		/// This is the type of object the radar scans for 
+		/// </summary>
 		private Type _type;
 		private int _range;
 		public Radar(string name, Type type, int range, GameGrid gamegrind) : this(name, 6, 4, type, range, gamegrind)
@@ -24,6 +30,10 @@ namespace RoverGameV2
 		{
 			get { return _type; }
 		}
+		/// <summary>
+		/// Scan the area then adds all the found GameObjects of type to scanned objects list in level 
+		/// </summary>
+		/// <returns></returns>
 		public override bool Operate()
 		{
 			if (!CheckCanOperate(-4))
@@ -31,12 +41,14 @@ namespace RoverGameV2
 				return false;
 			}
 
+			// Make Scan area 
 			Circle scanArea = new Circle();
 			scanArea.Center = (Owner as Rover).Center;
 			scanArea.Radius = GameGrid.CellSize * _range;
 
 			List<GameObject> scanedGOs = GameGrid.GetScannedGameObjects(scanArea);
 
+			// Of all the GameObjects that are of scan Type  Add two levels scan list 
 			foreach (GameObject scanGO in scanedGOs.FindAll(x => x.GetType() == _type))
 			{
 				if (scanGO != Owner)

@@ -7,26 +7,47 @@ using SwinGameSDK;
 
 namespace RoverGameV2
 {
+	/// <summary>
+	/// Specimen is a random moving object that the rover needs to  drill and collect
+	/// </summary>
 	public class Specimen : GameObject
 	{
-		private float _size;
+		/// <summary>
+		/// How much the object weighs
+		/// </summary>
+		private float _weight;
+
+		/// <summary>
+		///  how fast the object alternates
+		/// </summary>
 		private float _change;
+
+		/// <summary>
+		///  alternate variable
+		/// </summary>
 		private int _count;
+		/// <summary>
+		///  alternate variable
+		/// </summary>
 		private int _countMax;
+
 		GameGrid _gamegrid;
 		public Specimen(string name, float width, float height, float size, Color color, GameGrid gamegrid) : base(name, width, height)
 		{
-			_size = size;
+			_weight = size;
 			_change = 1;
 			_count = 0;
 			_countMax = 0;
 			Color = color;
 			_gamegrid = gamegrid;
 		}
-		public float Size
+		public float Weight
 		{
-			get { return _size; }
+			get { return _weight; }
 		}
+		/// <summary>
+		/// Set the Alternate speed from 1 to 10 
+		/// </summary>
 		public int AlternateSpeed
 		{
 			set
@@ -51,13 +72,13 @@ namespace RoverGameV2
 
 		public override string Details()
 		{
-			return "Size: " + _size;
+			return "Weight: " + _weight;
 		}
 		public override List<string> AllDetails()
 		{
 			List<string> allDetails = new List<string>();
 			allDetails.Add(Name);
-			allDetails.Add("Size: " + Size);
+			allDetails.Add("Weight: " + Weight);
 			allDetails.Add("Decsription: Blah Blah Balh");
 			return allDetails;
 		}
@@ -65,7 +86,10 @@ namespace RoverGameV2
 		{
 			SwinGame.FillRectangle(Color, X, Y, Width, Height);
 		}
-
+		/// <summary>
+		/// Every frame this function will run. 
+		///  it will do base movement, check boundaries and Alternate
+		/// </summary>
 		public override void Update()
 		{
 			base.Update();
@@ -78,6 +102,17 @@ namespace RoverGameV2
 			}
 			else _count++;
 		}
+		/// <summary>
+		/// Changes the height and width
+		///	If height is increasing then width is decreasing and vice a versa
+		///	until it either hits it's maximum point or minimum point And then it reverses the other way 
+		/// </summary>
+		private void Alternate()
+		{
+			float max = Width + Height;
+			float min = 2;
+			Alternate(max, min);
+		}
 		private void Alternate(float max, float min)
 		{
 			if (Height >= max || Width >= max || Height <= min || Width <= min)
@@ -89,12 +124,9 @@ namespace RoverGameV2
 			Y = Y - _change;
 			Height = Height + 2 * _change;
 		}
-		private void Alternate()
-		{
-			float max = Width + Height;
-			float min = 2;
-			Alternate(max, min);
-		}
+		/// <summary>
+		/// Give the specimen random X velocity and Y velocity
+		/// </summary>
 		private void RandomMovment()
 		{
 			Random rand = _gamegrid.Level.Randomer;

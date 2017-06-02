@@ -7,8 +7,14 @@ using SwinGameSDK;
 
 namespace RoverGameV2
 {
+	/// <summary>
+	/// A device that charges it’s connected battery
+	/// </summary>
 	public class SolarPanel : Device
 	{
+		/// <summary>
+		/// Each frame the solar panel would charge the connected battery this much 
+		/// </summary>
 		int _chargeRate;
 		public SolarPanel(string name, int chargeRate, GameGrid gamegrind) : this(name, 8, 3, chargeRate, gamegrind)
 		{

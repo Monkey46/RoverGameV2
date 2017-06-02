@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using SwinGameSDK;
 namespace RoverGameV2
 {
+	/// <summary>
+	/// GameObjects all objects that are within the game grid and are part of the main gameplay 
+	/// </summary>
 	public abstract class GameObject
 	{
 		private string _name;
@@ -39,11 +42,17 @@ namespace RoverGameV2
 			get { return _y; }
 			set { _y = value; }
 		}
+		/// <summary>
+		/// the far right end point of the object
+		/// </summary>
 		public float X2
 		{
 			get { return _x + _width; }
 			set { _x = value - _width; }
 		}
+		/// <summary>
+		/// The far down and point of the object 
+		/// </summary>
 		public float Y2
 		{
 			get { return _y + _height; }
@@ -87,11 +96,17 @@ namespace RoverGameV2
 			get { return _yVelocity; }
 			set { _yVelocity = value; }
 		}
+		/// <summary>
+		/// the Object’s previous X velocity 
+		/// </summary>
 		public float PreXVelocity
 		{
 			get { return _preXVelocity; }
 			set { _preXVelocity = value; }
 		}
+		/// <summary>
+		/// the Object’s previous Y velocity 
+		/// </summary>
 		public float PreYVelocity
 		{
 			get { return _preYVelocity; }
@@ -113,13 +128,37 @@ namespace RoverGameV2
 		{
 			SwinGame.DrawRectangle(Color.Black, X - 1, Y - 1, Width + 2, Height + 2);
 		}
+		/// <summary>
+		/// The method that tells us how to render this object
+		/// </summary>
 		public abstract void Render();
+		/// <summary>
+		///  a method that gives us a list of strings of all the needed information about the subject
+		///  to be used in the GUI
+		/// </summary>
+		/// <returns></returns>
 		public abstract List<string> AllDetails();
+		/// <summary>
+		/// a method that gives us short description of the object
+		/// to b used int the GUI
+		/// </summary>
+		/// <returns></returns>
 		public abstract string Details();
+
+		/// <summary>
+		/// Find out if the object is at this point
+		/// </summary>
+		/// <param name="_point"></param>
+		/// <returns></returns>
 		public bool IsAt(Point2D _point)
 		{
 			return SwinGame.PointInRect(_point, X, Y, Width, Height);
 		}
+
+		/// <summary>
+		/// If an object has collided with a rover it will go back to its previous velocity 
+		/// </summary>
+		/// <param name="coilliedWith"></param>
 		public void HasCollided(GameObject coilliedWith)
 		{
 			// @Task Make to abstruct Method
@@ -131,10 +170,16 @@ namespace RoverGameV2
 			}
 
 		}
+		/// <summary>
+		/// Each object will have to update itself per frame and each object Will already have update movement as it's base
+		/// </summary>
 		public virtual void Update()
 		{
 			UpdateMovement();
 		}
+		/// <summary>
+		/// Changes the object's coordinates  associated with X and Y velocities and then resets the X and Y velocities
+		/// </summary>
 		private void UpdateMovement()
 		{
 			X += XVelocity;

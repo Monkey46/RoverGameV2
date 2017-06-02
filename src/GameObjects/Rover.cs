@@ -7,6 +7,10 @@ using SwinGameSDK;
 
 namespace RoverGameV2
 {
+	/// <summary>
+	/// A rover is a class with a list of batteries List of device and  list of specimens
+	/// It can attach and detach devices, Collect specimens, Move, Charge Batteries, Drill and Scan
+	/// </summary>
 	public class Rover : GameObject, IIsOwener
 	{
 		private List<Battery> _batteries;
@@ -38,13 +42,19 @@ namespace RoverGameV2
 			SwinGame.FillRectangle(Color.Red, X, Y, Width, Height);
 			SwinGame.DrawText("R", Color.Black, X + 1, Y + 1);
 		}
-
+		/// <summary>
+		///  Every frame this function will run. 
+		///  it will do base movement, check boundaries and charge batteries 
+		/// </summary>
 		public override void Update()
 		{
 			base.Update();
 			_gamegrid.Checkbonders(this);
 			ChargeBatteries();
 		}
+		/// <summary>
+		/// This will operate the first camera in the List of Devices 
+		/// </summary>
 		public void UpdateRenderList()
 		{
 			Camera camera = _devices.Find(x => x is Camera) as Camera;
@@ -77,6 +87,10 @@ namespace RoverGameV2
 				return total;
 			}
 		}
+		/// <summary>
+		/// This will find the battery with the most current power inside the battery list
+		/// </summary>
+		/// <returns></returns>
 		private Battery HighestBattery()
 		{
 			if (_batteries.Count == 0)
@@ -93,6 +107,11 @@ namespace RoverGameV2
 			}
 			return highestBat;
 		}
+		/// <summary>
+		/// This will  add a battery or a device to the battery list or device list
+		/// and if it is a Device change the owner to this Rover
+		/// </summary>
+		/// <param name="attachItem"></param>
 		public void Attach(IAttachable attachItem)
 		{
 			if (attachItem is Battery)
@@ -107,6 +126,11 @@ namespace RoverGameV2
 				(attachItem as Device).ConnectedBattery = HighestBattery();
 			}
 		}
+		/// <summary>
+		/// This will  remove a device or battery and change the owner to the Rover’s game grid
+		/// and if it's a battery, all devices that have that as there connected battery, there connected battery will be set to null 
+		/// </summary>
+		/// <param name="attachItem"></param>
 		public void Detach(IAttachable attachItem)
 		{
 			if (attachItem is Battery)
@@ -127,12 +151,21 @@ namespace RoverGameV2
 				(attachItem as Device).Owner = _gamegrid;
 			}
 		}
+		/// <summary>
+		/// Add a specimen to the specimen list
+		/// </summary>
+		/// <param name="newSpecimen"></param>
 		public void Collect(Specimen newSpecimen)
 		{
 			_specimens.Add(newSpecimen);
-			Console.WriteLine(Name + " has collected " + newSpecimen.Name + " weighing  " + newSpecimen.Size);
+			Console.WriteLine(Name + " has collected " + newSpecimen.Name + " weighing  " + newSpecimen.Weight);
 		}
 
+		/// <summary>
+		/// For all the motors in the device list it changes of the direction of the motor And then operates it
+		/// </summary>
+		/// <param name="direction"></param>
+		/// <returns></returns>
 		public bool Move(Direction direction)
 		{
 			if (_devices.Exists(x => x is Motor))
@@ -146,6 +179,10 @@ namespace RoverGameV2
 			}
 			return false;
 		}
+		/// <summary>
+		/// Makes all the solar panels in the device lists operate 
+		/// </summary>
+		/// <returns></returns>
 		public bool ChargeBatteries()
 		{
 			if (_devices.Exists(x => x is SolarPanel))
@@ -158,6 +195,10 @@ namespace RoverGameV2
 			}
 			return false;
 		}
+		/// <summary>
+		/// Makes all the drills in device list operate
+		/// </summary>
+		/// <returns></returns>
 		public bool Drill()
 		{
 			if (_devices.Exists(x => x is Drill))
@@ -172,6 +213,10 @@ namespace RoverGameV2
 			}
 			return false;
 		}
+		/// <summary>
+		/// Makes all the Radars in device list operate
+		/// </summary>
+		/// <returns></returns>
 		public bool Scan()
 		{
 			if (_devices.Exists(x => x is Radar))
