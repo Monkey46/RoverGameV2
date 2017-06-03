@@ -7,6 +7,10 @@ using SwinGameSDK;
 
 namespace RoverGameV2
 {
+	/// <summary>
+	/// Pop up element is a part of a pop up 
+	/// and each different child of pop-up element will have its own unique action functionality
+	/// </summary>
 	public abstract class GUIPopUpElement : GUIPart
 	{
 		string _name;
@@ -37,10 +41,6 @@ namespace RoverGameV2
 		{
 			SwinGame.FillRectangle(Color.AliceBlue,X+XPadding, Y+YPadding,Width-XPadding, Height);
 			SwinGame.DrawText(_name, Color.Black, X + XPadding*2, Y + YPadding*2);
-		}
-		public bool IsAt(Point2D _point)
-		{
-			return SwinGame.PointInRect(_point, X, Y, Width, Height);
 		}
 		public abstract GUIPopUp Action();
 	}

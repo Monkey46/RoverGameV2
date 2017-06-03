@@ -7,6 +7,9 @@ using SwinGameSDK;
 
 namespace RoverGameV2
 {
+	/// <summary>
+	/// A panel is there a rectangular square that displays a single game object’s name and basic details
+	/// </summary>
 	public class GUIPanel : GUIPart
 	{
 		GameObject _gameObject;
@@ -25,10 +28,9 @@ namespace RoverGameV2
 			get { return _gameObject as GameObject; }
 		}
 
-		public bool IsAt(Point2D _point)
-		{
-			return SwinGame.PointInRect(_point, X, Y, Width, Height);
-		}
+		/// <summary>
+		/// Draws the background, then draws its Game Object's name, then draws Game Object's details 
+		/// </summary>
 		public override void Render()
 		{
 			SwinGame.FillRectangle(_panelColor, X, Y, Width, Height);

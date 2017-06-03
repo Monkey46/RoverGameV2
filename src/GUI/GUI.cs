@@ -7,26 +7,49 @@ using SwinGameSDK;
 
 namespace RoverGameV2
 {
+	/// <summary>
+	/// The graphical interface which the user will interact with 
+	///	It can drop and pick up Game Objects
+	/// Get more details of Game Objects
+	/// </summary>
 	public class GUI
 	{
 		private GameGrid _gamegrid;
-		private Color _color;
+		private Color _backgroundColor;
 		private float _x;
 		private float _y;
 		private float _height;
 		private float _width;
+
+		/// <summary>
+		/// List of all the GUI parts
+		/// </summary>
 		private List<GUIPart> _partList;
+		/// <summary>
+		///  List of all the GUI pop-up parts
+		/// </summary>
 		private List<GUIPopUp> _popUps;
+
+		/// <summary>
+		/// The padding between the edge of the background of the GUI and the edge of the panel
+		/// </summary>
 		private float _xPadding = 4;
+		/// <summary>
+		/// The padding between the edge of the background of the GUI and the edge of the panel
+		/// </summary>
 		private float _yPadding = 4;
+
+		/// <summary>
+		/// 
+		/// </summary>
 		private float _panelSpacing = 35;
 		private float _panelHeight = 30;
-		private Rover _seclectedR;
+		private Rover _seclectedRover;
 
 		public GUI(GameGrid gamegrid)
 		{
 			_gamegrid = gamegrid;
-			_color = Color.Cyan;
+			_backgroundColor = Color.Cyan;
 			_x = _gamegrid.Width;
 			_y = 0;
 			_width = SwinGame.ScreenWidth() - _gamegrid.Width;
@@ -34,6 +57,11 @@ namespace RoverGameV2
 			_partList = new List<GUIPart>();
 			_popUps = new List<GUIPopUp>();
 		}
+		/// <summary>
+		/// This handles the user input 
+		/// this will create pop-ups and execute actions of the pop-up elements
+		/// this will also change the selected object
+		/// </summary>
 		public void HandleInput()
 		{
 			if (SwinGame.MouseClicked(MouseButton.RightButton))
@@ -60,41 +88,53 @@ namespace RoverGameV2
 				}
 			}
 		}
+		/// <summary>
+		/// This will run every frame.
+		/// It will clear the part list,
+		/// and create panels of the selected Rover,
+		/// and making information box of the selected object
+		/// </summary>
 		public void Update()
 		{
-			_seclectedR = _gamegrid.SelectedRover;
+			_seclectedRover = _gamegrid.SelectedRover;
 			_partList.Clear();
 			float spacing = 50 + _yPadding;
-			foreach (Device dev in _seclectedR.Devices)
+			foreach (Device dev in _seclectedRover.Devices)
 			{
 				Color panelColor;
+				// If there's no connected battery the panel be red and if there is the panel be green 
 				if (dev.ConnectedBattery == null)
 				{ panelColor = Color.DarkRed; }
 				else { panelColor = Color.ForestGreen; }
-				GUIPanel s = new GUIPanel(dev, panelColor, _x + _xPadding, _y + spacing, _panelHeight, _width - 4);
+				GUIPanel s = new GUIPanel(dev, panelColor, _x + _xPadding, _y + spacing, _panelHeight, _width - _xPadding);
 				spacing += _panelSpacing;
 				_partList.Add(s);
 			}
-			foreach (Battery bat in _seclectedR.Batteries)
+			foreach (Battery bat in _seclectedRover.Batteries)
 			{
-				GUIPanel s = new GUIPanel(bat, Color.BlueViolet, _x + _xPadding, _y + spacing, _panelHeight, _width - 4);
+				GUIPanel s = new GUIPanel(bat, Color.BlueViolet, _x + _xPadding, _y + spacing, _panelHeight, _width - _xPadding);
 				spacing += _panelSpacing;
 				_partList.Add(s);
 			}
-			foreach (Specimen spec in _seclectedR.Specimens)
+			foreach (Specimen spec in _seclectedRover.Specimens)
 			{
-				GUIPanel s = new GUIPanel(spec, Color.WhiteSmoke, _x + _xPadding, _y + spacing, _panelHeight, _width - 4);
+				GUIPanel s = new GUIPanel(spec, Color.WhiteSmoke, _x + _xPadding, _y + spacing, _panelHeight, _width - _xPadding);
 				spacing += _panelSpacing;
 				_partList.Add(s);
 			}
-			GUITextBox InfoBox = new GUITextBox(_gamegrid.Level.SelectedGameObject, _x + _xPadding, _y + spacing, 200, _width - 4);
+			GUITextBox InfoBox = new GUITextBox(_gamegrid.Level.SelectedGameObject, _x + _xPadding, _y + spacing, 200, _width - _xPadding);
 			_partList.Add(InfoBox);
 		}
+		/// <summary>
+		/// will render the background of the GUI
+		/// then render GUI parts
+		/// then render the GUI pop-ups
+		/// </summary>
 		public void Render()
 		{
 			// Backgorund
-			SwinGame.FillRectangle(_color, _x, _y, _width, _height);
-			SwinGame.DrawText(_seclectedR.Name, Color.Red, _x + _xPadding, _y + _xPadding); // @Task Make this bigger some how?
+			SwinGame.FillRectangle(_backgroundColor, _x, _y, _width, _height);
+			SwinGame.DrawText(_seclectedRover.Name, Color.Red, _x + _xPadding, _y + _xPadding); // @Task Make this bigger some how?
 			foreach (GUIPart iGUIPart in _partList)
 			{
 				iGUIPart.Render();
@@ -104,6 +144,11 @@ namespace RoverGameV2
 				popUp.Render();
 			}
 		}
+		/// <summary>
+		///  This will make a list of  GUI pop-up elements depending on the type of game object the GUI panel is
+		/// </summary>
+		/// <param name="iGUIPanel"></param>
+		/// <returns></returns>
 		private List<GUIPopUpElement> MakePopUpElements(GUIPanel iGUIPanel)
 		{
 			List<GUIPopUpElement> popupElements = new List<GUIPopUpElement>();
@@ -121,6 +166,9 @@ namespace RoverGameV2
 			}
 			return popupElements;
 		}
+		/// <summary>
+		/// Where the mouse position is it'll make that panel the selected object 
+		/// </summary>
 		private void SelectPanel()
 		{
 			foreach (GUIPanel iGUIPanel in _partList.FindAll(x => x is GUIPanel))
@@ -131,6 +179,10 @@ namespace RoverGameV2
 				}
 			}
 		}
+		/// <summary>
+		/// This will check if the mouse is over a pop up if not it will clear the pop-up
+		/// else it will execute the action of the pop-up element
+		/// </summary>
 		private void PopUpChecker()
 		{
 			bool clearpopUp = false;

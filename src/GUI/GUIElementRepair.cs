@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace RoverGameV2
 {
+	/// <summary>
+	/// This GUI pop-up element will repair the drill
+	/// </summary>
 	public class GUIElementRepair : GUIPopUpElement
 	{
 		public GUIElementRepair( float x, float y, float width, GameObject gameObj, GameGrid gamegrid) : base("Repair", x, y, width, gameObj, gamegrid)

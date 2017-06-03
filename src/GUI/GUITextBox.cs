@@ -7,6 +7,9 @@ using SwinGameSDK;
 
 namespace RoverGameV2
 {
+	/// <summary>
+	/// This GUI Part will  display the full details of the selected Game object 
+	/// </summary>
 	public class GUITextBox : GUIPart
 	{
 		float _x;

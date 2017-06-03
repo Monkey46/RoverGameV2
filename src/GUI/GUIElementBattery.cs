@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace RoverGameV2
 {
+	/// <summary>
+	/// This is a GUI popup element that will connect  A device to battery
+	/// </summary>
 	public class GUIElementBattery : GUIPopUpElement
 	{
 		Device _device;

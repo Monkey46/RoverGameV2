@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using SwinGameSDK;
 namespace RoverGameV2
 {
+	/// <summary>
+	/// A rectangular box with a list of GUI pop up elements
+	/// </summary>
 	public class GUIPopUp : GUIPart
 	{
 		Color _color = Color.DeepSkyBlue;
@@ -27,6 +30,9 @@ namespace RoverGameV2
 		{
 			get { return _elements; }
 		}
+		/// <summary>
+		/// Will render the pop-up background then render all the popup elements in the elements list
+		/// </summary>
 		public override void Render()
 		{
 			SwinGame.FillRectangle(_color, X, Y, Width, Height);
@@ -34,10 +40,6 @@ namespace RoverGameV2
 			{
 				element.Render();
 			}
-		}
-		public bool IsAt(Point2D _point)
-		{
-			return SwinGame.PointInRect(_point, X, Y, Width, Height);
 		}
 	}
 }
