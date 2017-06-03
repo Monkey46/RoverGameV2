@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace RoverGameV2
 {
-    public interface IIsOwener
+	/// <summary>
+	/// Can own Devices
+	/// </summary>
+	public interface IIsOwener
     {
 
     }

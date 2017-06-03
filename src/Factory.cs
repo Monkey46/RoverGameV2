@@ -7,9 +7,18 @@ using SwinGameSDK;
 
 namespace RoverGameV2
 {
+	/// <summary>
+	/// The factory builds Rover, Rover parts and Specimens
+	/// </summary>
 	public class Factory
 	{
-
+		/// <summary>
+		/// Makes a Rover and some Devices  and attach the Devices to rover 
+		/// then return the Rover
+		/// </summary>
+		/// <param name="roverName"></param>
+		/// <param name="grid"></param>
+		/// <returns></returns>
 		public Rover MakeRover(string roverName, GameGrid grid)
 		{
 			Rover rover = new Rover(roverName, 20, 10, grid);
@@ -33,6 +42,11 @@ namespace RoverGameV2
 			rover.Attach(smallBat);
 			return rover;
 		}
+		/// <summary>
+		/// Makes a bunch of specimens and returns a list of specimens 
+		/// </summary>
+		/// <param name="grid"></param>
+		/// <returns></returns>
 		public List<GameObject> MakeSpecimans(GameGrid grid)
 		{
 			List<GameObject> specimans = new List<GameObject>();

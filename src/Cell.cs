@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace RoverGameV2
 {
-    public class Cell
+	/// <summary>
+	/// Cell has a list of Game objects that are in it
+    /// this class is currently redundant but will be used later on for better collision detection
+	/// </summary>
+	public class Cell
     {
         List<GameObject> _contents;
 

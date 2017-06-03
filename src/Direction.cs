@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace RoverGameV2
 {
-    public enum Direction
+	/// <summary>
+	/// The possible directions the rovic and travel 
+	/// </summary>
+	public enum Direction
     {
         up,
         down,

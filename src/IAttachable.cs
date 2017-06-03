@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace RoverGameV2
 {
-    public interface IAttachable
+	/// <summary>
+	/// Anything that inherit from this is able to be attached to the Rover 
+	/// </summary>
+	public interface IAttachable
     {
     }
 }

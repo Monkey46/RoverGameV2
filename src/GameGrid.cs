@@ -7,6 +7,9 @@ using SwinGameSDK;
 
 namespace RoverGameV2
 {
+	/// <summary>
+	/// The game Gird is a class that Handles all the interactions between the level and game objects
+	/// </summary>
 	public class GameGrid : IIsOwener
 	{
 		private Cell[][] _cells;
@@ -71,16 +74,31 @@ namespace RoverGameV2
 			get { return _level; }
 			set { _level = value; }
 		}
-
-		// @Task Should I clean this up??
+		/// <summary>
+		/// Returned List of Game objects using the levels collision  processor  
+		/// </summary>
+		/// <param name="scanArea"></param>
+		/// <returns></returns>
 		public List<GameObject> GetScannedGameObjects(Circle scanArea)
 		{
-			return _level.Colsions.ScanColsions(scanArea, _level.LevelGameObjects);
+			return _level.ColsionProcessor.ScanColsions(scanArea, _level.LevelGameObjects);
 		}
+		/// <summary>
+		/// Returned List of Specimens using the levels collision  processor  
+		/// </summary>
+		/// <param name="drillArea"></param>
+		/// <returns></returns>
 		public List<Specimen> GetDrilledSpecimen(Circle drillArea)
 		{
-			return Level.Colsions.DrillColsions(drillArea, Level.LevelGameObjects);
+			return Level.ColsionProcessor.DrillColsions(drillArea, Level.LevelGameObjects);
 		}
+
+		/// <summary>
+		/// Drops game object of selected Rover
+		/// give the game object in X and Y coordinates
+		/// and then adds it to the level list
+		/// </summary>
+		/// <param name="dropGO"></param>
 		public void Drop(GameObject dropGO)
 		{
 			if (dropGO is Specimen)
@@ -92,6 +110,10 @@ namespace RoverGameV2
 			dropGO.Y = _selectedRover.Y;
 			_level.LevelGameObjects.Add(dropGO);
 		}
+		/// <summary>
+		/// It attaches the game object to the selected Rover and removes it from the game level list
+		/// </summary>
+		/// <param name="pickUpGO"></param>
 		public void Pickup(GameObject pickUpGO)
 		{
 			_selectedRover.Attach(pickUpGO as IAttachable);
@@ -102,6 +124,7 @@ namespace RoverGameV2
 			//SwinGame.FillRectangle(Color.SandyBrown, 0, 0, NumberOfXCells * CellSize, NumberOfYCells * CellSize);
 			SwinGame.DrawBitmap(background, 0, 0);
 
+			// Renders the Grid Lines
 			for (float xline = CellSize; xline <= NumberOfXCells * CellSize; xline = xline + CellSize)
 			{
 				SwinGame.DrawLine(Color.Black, xline, 0, xline, NumberOfYCells * CellSize);
@@ -111,6 +134,10 @@ namespace RoverGameV2
 				SwinGame.DrawLine(Color.Black, 0, yline, NumberOfXCells * CellSize, yline);
 			}
 		}
+		/// <summary>
+		/// Checks if the game object is not Within the bounds of the game grid 
+		/// </summary>
+		/// <param name="go"></param>
 		public void Checkbonders(GameObject go)
 		{
 			if (go.X2 > Width) go.X2 = Width - 1;

@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 using SwinGameSDK;
 namespace RoverGameV2
 {
-    public static class ColorExtension
+	/// <summary>
+	/// An extension class which lets you able to set the alpha value of an RGB colour
+	///	BROCKEN
+	/// </summary>
+	public static class ColorExtension
     {
         public static Color SetA(this Color color, byte a)
         {

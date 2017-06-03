@@ -10,23 +10,47 @@ namespace RoverGameV2
 	public class Level
 	{
 		private GameGrid _gamegrid;
-		private ColsionProsser _colsionManager;
+		private ColsionProcessor _colsionProcessor;
+
+		/// <summary>
+		/// List of all The Game Objects in the Game
+		/// </summary>
 		private List<GameObject> _levelList;
+
+		/// <summary>
+		/// List of GameObjects The camera sees and is rendered
+		/// </summary>
 		private List<GameObject> _renderList;
+
 		private GameObject _selectedGO;
+		/// <summary>
+		/// A List of scan object loactions and the time it was scanned
+		/// </summary>
 		private List<Tuple<Point2D, int>> _scanedGameObjects;
+
+		/// <summary>
+		/// each fram the GameTick in increase 
+		/// </summary>
 		private int _gameTick;
+
+		/// <summary>
+		///  How the long in frames that the sacn Object will alive for
+		/// </summary>
 		private int _scanDuration;
+
 		private Random _randomer;
 
 		public Level(GameGrid gamegrid)
 		{
 			_gamegrid = gamegrid;
-			_colsionManager = new ColsionProsser();
+			_colsionProcessor = new ColsionProcessor();
 			_levelList = new List<GameObject>();
 			_scanedGameObjects = new List<Tuple<Point2D, int>>();
 			_gameTick = 0;
+
+			// 120 frams at 60fps = 2secs
 			_scanDuration = 120;
+
 			_renderList = new List<GameObject>();
 			_randomer = new Random();
 
@@ -46,17 +70,21 @@ namespace RoverGameV2
 			get { return _selectedGO; }
 			set { _selectedGO = value; }
 		}
-		public ColsionProsser Colsions
+		public ColsionProcessor ColsionProcessor
 		{
-			get { return _colsionManager; }
+			get { return _colsionProcessor; }
 		}
 		public Random Randomer
 		{
 			get { return _randomer; }
 		}
+
+		/// <summary>
+		///  Process input from user
+		/// </summary>
 		public void InputHandler()
 		{
-			//move Get the Motor to do the move ment
+			// Move the Rover
 			if (SwinGame.KeyDown(KeyCode.UpKey) || SwinGame.KeyDown(KeyCode.WKey))
 			{
 				_gamegrid.SelectedRover.Move(Direction.up);
@@ -73,7 +101,7 @@ namespace RoverGameV2
 			{
 				_gamegrid.SelectedRover.Move(Direction.left);
 			}
-			// Charge with SolarPanel
+			// Charge with SolarPanels
 			if (SwinGame.KeyDown(KeyCode.SpaceKey))
 			{
 				_gamegrid.SelectedRover.ChargeBatteries();
@@ -129,6 +157,12 @@ namespace RoverGameV2
 				}
 			}
 		}
+		/// <summary>
+		/// Will do this every frame 
+		/// This will tell each game object to update form the level list and
+		/// then Update the render list with the selected Rover's Camera
+		/// incremented The game tick
+		/// </summary>
 		public void Update()
 		{
 			foreach (GameObject iGO in _levelList)
@@ -140,8 +174,11 @@ namespace RoverGameV2
 		}
 		public void Handlecollisions()
 		{
-			_colsionManager.DetectColsions(_levelList);
+			_colsionProcessor.DetectColsions(_levelList);
 		}
+		/// <summary>
+		/// Renders all things that need to be rendered in the game 
+		/// </summary>
 		public void Render()
 		{
 			_gamegrid.Reder();
@@ -149,21 +186,42 @@ namespace RoverGameV2
 			RenderRovers();
 			RenderScan();
 		}
+
+		/// <summary>
+		///	Picks up a game object at as to the rover
+		/// and remove it from the level list
+		/// </summary>
+		/// <param name="moveGO"></param>
 		public void Pickup(GameObject moveGO)
 		{
 			_gamegrid.SelectedRover.Attach(moveGO as Device);
 			_levelList.Remove(moveGO);
 
 		}
+
+		/// <summary>
+		/// detaches  an object from The selected River and Add it to the level list
+		/// </summary>
+		/// <param name="moveGO"></param>
 		public void Drop(GameObject moveGO)
 		{
 			_gamegrid.SelectedRover.Detach(moveGO as Device);
 			_levelList.Add(moveGO);
 		}
+
+		/// <summary>
+		/// Add the co-ordinate parameter and the current Game tick to the scanned game objects 
+		/// </summary>
+		/// <param name="addCordanite"></param>
 		public void AddScanObeject(Point2D addCordanite)
 		{
 			_scanedGameObjects.Add(Tuple.Create<Point2D, int>(addCordanite, _gameTick));
 		}
+
+		/// <summary>
+		/// Renders a small green circle at the location All the Coordinate in the scanned objects list
+		///	and delete coordinates if it's been there longer than the scan duration 
+		/// </summary>
 		private void RenderScan()
 		{
 			List<Tuple<Point2D, int>> deletelist = new List<Tuple<Point2D, int>>();
@@ -184,6 +242,9 @@ namespace RoverGameV2
 			}
 
 		}
+		/// <summary>
+		/// Clears the level’s render list
+		/// </summary>
 		public void ClearRenderList()
 		{
 			if (RenderList != null)
@@ -192,6 +253,9 @@ namespace RoverGameV2
 			}
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
 		private void UpdateColsionList()
 		{
 
@@ -199,6 +263,10 @@ namespace RoverGameV2
 
 		}
 
+		/// <summary>
+		/// Will make each game object in the render list Render itself
+		///	and if it's the selected object it'll make The Game object render it’s outline
+		/// </summary>
 		private void RenderRenderList()
 		{
 			if (_renderList != null)
@@ -217,6 +285,10 @@ namespace RoverGameV2
 				}
 			}
 		}
+
+		/// <summary>
+		/// Makes every Rover in the level list render 
+		/// </summary>
 		private void RenderRovers()
 		{
 			foreach (Rover rover in _levelList.FindAll(x => x is Rover))

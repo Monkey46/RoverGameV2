@@ -7,13 +7,22 @@ using SwinGameSDK;
 
 namespace RoverGameV2
 {
-    public class ColsionProsser
+	/// <summary>
+	/// This class will handle any Collision processing that needs to be done 
+	/// </summary>
+	public class ColsionProcessor
     {
-        public ColsionProsser()
+        public ColsionProcessor()
         {
 
         }
-        public List<GameObject> ScanColsions(Circle scanArea, List<GameObject> GOToScan)
+		/// <summary>
+		/// This will return and List of game objects that have collided with the given circle and the given list of Game objects 
+		/// </summary>
+		/// <param name="scanArea"></param>
+		/// <param name="GOToScan"></param>
+		/// <returns></returns>
+		public List<GameObject> ScanColsions(Circle scanArea, List<GameObject> GOToScan)
         {
             List<GameObject> scannedGameObjects = new List<GameObject>();
             foreach (GameObject GO in GOToScan)
@@ -25,7 +34,13 @@ namespace RoverGameV2
             }
             return scannedGameObjects;
         }
-        public List<Specimen> DrillColsions(Circle drillArea, List<GameObject> GOToDrill)
+		/// <summary>
+		/// This will return and List of Specimens  that have collided with the given circle and the given list of Game objects 
+		/// </summary>
+		/// <param name="drillArea"></param>
+		/// <param name="GOToDrill"></param>
+		/// <returns></returns>
+		public List<Specimen> DrillColsions(Circle drillArea, List<GameObject> GOToDrill)
         {
             List<Specimen> drilledItems = new List<Specimen>();
             foreach (GameObject GO in GOToDrill)
@@ -37,21 +52,24 @@ namespace RoverGameV2
             }
             return drilledItems;
         }
-        public void MovmentCollisions(GameObject GO1, GameObject GO2)
+		/// <summary>
+		/// This checks if GameObject 1 hasHas collided with GameObject 2
+		///	and if tells GameObject 1 that it has collided with GameObject 2 
+		/// </summary>
+		/// <param name="GO1"></param>
+		/// <param name="GO2"></param>
+		public void MovmentCollisions(GameObject GO1, GameObject GO2)
         {
             if (SwinGame.RectanglesIntersect(GO1.HitBox, GO2.HitBox))
             {
                 GO1.HasCollided(GO2);
             }
         }
-		public void WallCollisions(List<GameObject> sideCells)
-		{
-			foreach (GameObject iGO in sideCells)
-			{
-				//
-			}
-		}
-        public void DetectColsions(List<GameObject> cellList)
+		/// <summary>
+		/// With the given list of GameObjects it will detect if any GameObject has collided with any other game object within the list 
+		/// </summary>
+		/// <param name="cellList"></param>
+		public void DetectColsions(List<GameObject> cellList)
         {
             foreach (GameObject GO1 in cellList)
             {
